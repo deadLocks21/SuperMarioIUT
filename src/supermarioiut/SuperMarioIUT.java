@@ -6,7 +6,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class SuperMarioIUT extends iut.Game {
-    private World world = new World(14, 14);
+    private World world = new World(20, 14);
     private int pixelForBlock = 64;
 
     /**

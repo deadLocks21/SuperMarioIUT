@@ -41,6 +41,9 @@ public class World {
         addFloor();
         addWalls();
         addCeiling();
+
+        changeTileOfTheWorld(1, 9, "floor");
+        changeTileOfTheWorld(1, 9, "floor");
     }
 
     public String compositionOfTheTile(int x, int y){

@@ -41,30 +41,29 @@ public class Player extends iut.BoxGameItem implements KeyListener{
         boolean top = this.getTop() <= o.getBottom() && this.getTop() > o.getBottom() - walkspeed;
         boolean bottom = this.getBottom() >= o.getTop() && this.getBottom() < o.getTop() + walkspeed;
 
-
         // Left Collide
-        if(left) {
+        if(left && !top && !bottom) {
             System.out.println("Left Touch");
             collideLeft = true;
             this.moveXY(o.getRight() - this.getLeft(), 0);
         }
 
         // Right Collide
-        if(right) {
+        if(right && !top && !bottom) {
             System.out.println("Right Touch");
             collideRight = true;
             this.moveXY(o.getLeft() - this.getRight(), 0);
         }
 
         // Top Collide
-        if(top) {
+        if(top && !right && !left) {
             System.out.println("Top Touch");
             collideTop = true;
             this.moveXY(0, o.getBottom()-this.getTop());
         }
 
         // Bottom Collide
-        if(bottom) {
+        if(bottom && !right && !left) {
             System.out.println("Bottom Touch");
             gravityEffect = false;
             this.moveXY(0, o.getTop()-this.getBottom());

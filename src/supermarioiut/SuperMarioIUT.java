@@ -50,7 +50,7 @@ public class SuperMarioIUT extends iut.Game {
     @Override
     protected void drawBackground(Graphics graphics) {
         graphics.setColor(new Color(92, 158, 252));
-        graphics.fillRect(00, 0, getWidth(), getHeight());
+        graphics.fillRect(0, 0, getWidth(), getHeight());
     }
 
     @Override

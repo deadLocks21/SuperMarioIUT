@@ -23,9 +23,7 @@ public class World {
     }
 
     public int[] getSize(){
-        int[] size = {width, height};
-
-        return size;
+        return new int[]{width, height};
     }
 
 
@@ -76,23 +74,23 @@ public class World {
 
     @Override
     public String toString(){
-        String ret = "";
+        StringBuilder ret = new StringBuilder();
 
         for(int y = 0; y < compisitionOfTheWorld.length; y ++){
             for(int x = 0; x < compisitionOfTheWorld[y].length;x ++){
                 switch (compositionOfTheTile(x, y)){
                     case "":
-                        ret += "0";
+                        ret.append("0");
                         break;
                     case "floor" :
-                        ret += "F";
+                        ret.append("F");
                        break;
                 }
             }
-            ret += "\n";
+            ret.append("\n");
         }
 
 
-        return ret;
+        return ret.toString();
     }
 }

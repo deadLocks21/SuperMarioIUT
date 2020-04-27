@@ -4,9 +4,10 @@ import iut.Game;
 import iut.Vector;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 public class SuperMarioIUT extends iut.Game {
-    private World world = new World(20, 14);
+    private OldWorld oldWorld = new OldWorld(20, 14);
     private int pixelForBlock = 64;
 
     /**
@@ -23,14 +24,16 @@ public class SuperMarioIUT extends iut.Game {
 
 
     private void drawTheWorld(Game g){
+        ArrayList myWorld = new ArrayList();
+
         int hauteurInverse = 1;
-        for(int y = world.getSize()[1] - 1; y >= 0; y --){
-            for(int x = 0; x < world.getSize()[0];x ++){
-                switch (world.compositionOfTheTile(x, y)){
+        for(int y = oldWorld.getSize()[1] - 1; y >= 0; y --){
+            for(int x = 0; x < oldWorld.getSize()[0]; x ++){
+                switch (oldWorld.compositionOfTheTile(x, y)){
                     case "":
                         break;
                     case "floor" :
-                        Floor f = new Floor(this, x*pixelForBlock, this.getHeight() - hauteurInverse*pixelForBlock);
+                        OldFloor f = new OldFloor(this, x*pixelForBlock, this.getHeight() - hauteurInverse*pixelForBlock);
                         g.addItem(f);
                         break;
                 }
@@ -43,7 +46,7 @@ public class SuperMarioIUT extends iut.Game {
     @Override
     protected void createItems() {
         drawTheWorld(this);
-        Player j = new Player(this, (this.getWidth()/2) - 16, this.getHeight()/2  - 32);
+        OldPlayer j = new OldPlayer(this, (this.getWidth()/2) - 16, this.getHeight()/2  - 32);
         this.addItem(j);
     }
 

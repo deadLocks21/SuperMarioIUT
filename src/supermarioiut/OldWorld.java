@@ -1,11 +1,24 @@
 package supermarioiut;
 
-public class World {
+/**
+ * Classe permettant de connaitre la structure d'un monde.
+ */
+public class OldWorld {
+    /**
+     * Largeur du monde.
+     */
     private int width;
+    /**
+     * Hauteur du monde
+     */
     private int height;
+    /**
+     * Composition du monde
+     */
     private String[][] compisitionOfTheWorld;
 
-    public World(int width, int height) {
+
+    public OldWorld(int width, int height) {
         this.height = height;
         this.width = width;
 

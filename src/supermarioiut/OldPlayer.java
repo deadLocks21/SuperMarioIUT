@@ -2,21 +2,19 @@ package supermarioiut;
 
 import iut.Game;
 import iut.GameItem;
-import org.w3c.dom.ls.LSOutput;
 
-import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 
-public class Player extends iut.BoxGameItem implements KeyListener{
+public class OldPlayer extends OldBackground implements KeyListener{
     boolean gravityEffect = true;
     boolean collideLeft = false;
     boolean collideRight = false;
     boolean collideTop = false;
-    int walkspeed = 8;
+    int walkspeed = 32;
 
-    public Player(Game g, int x, int y) {
+    public OldPlayer(Game g, int x, int y) {
         super(g, "mario", 80, y);
     }
 
@@ -98,8 +96,11 @@ public class Player extends iut.BoxGameItem implements KeyListener{
         switch(e.getKeyCode())
         {
             case KeyEvent.VK_RIGHT:
-                if(this.getRight()<this.getGame().getWidth() && !collideRight)
-                    this.moveXY(+walkspeed, 0);
+                if(this.getRight()<this.getGame().getWidth() && !collideRight) {
+                    if(this.getRight() > this.getGame().getWidth()/2){
+                        super.moveTheWorld(walkspeed);
+                    } else this.moveXY(+walkspeed, 0);
+                }
                 break;
             case KeyEvent.VK_LEFT:
                 if(this.getLeft()>0 && !collideLeft)

@@ -7,14 +7,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 
-public class OldPlayer extends OldBackground implements KeyListener{
+public class ZOldPlayer extends ZOldBackground implements KeyListener{
     boolean gravityEffect = true;
     boolean collideLeft = false;
     boolean collideRight = false;
     boolean collideTop = false;
     int walkspeed = 32;
 
-    public OldPlayer(Game g, int x, int y) {
+    public ZOldPlayer(Game g, int x, int y) {
         super(g, "mario", 80, y);
     }
 

@@ -3,7 +3,7 @@ package supermarioiut;
 /**
  * Classe permettant de connaitre la structure d'un monde.
  */
-public class OldWorld {
+public class ZOldWorld {
     /**
      * Largeur du monde.
      */
@@ -18,7 +18,7 @@ public class OldWorld {
     private String[][] compisitionOfTheWorld;
 
 
-    public OldWorld(int width, int height) {
+    public ZOldWorld(int width, int height) {
         this.height = height;
         this.width = width;
 

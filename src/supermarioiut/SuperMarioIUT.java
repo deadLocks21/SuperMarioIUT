@@ -2,52 +2,31 @@ package supermarioiut;
 
 import iut.Game;
 import iut.Vector;
-import java.awt.Color;
-import java.awt.Graphics;
+
+import java.awt.*;
+import java.time.chrono.ThaiBuddhistEra;
 import java.util.ArrayList;
 
 public class SuperMarioIUT extends iut.Game {
-    private OldWorld oldWorld = new OldWorld(20, 14);
-    private int pixelForBlock = 64;
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         SuperMarioIUT game = new SuperMarioIUT();
         game.play();
     }
 
+
     public SuperMarioIUT() {
         super(1024, 960, "Super Mario IUT");
-    }
 
-
-    private void drawTheWorld(Game g){
-        ArrayList myWorld = new ArrayList();
-
-        int hauteurInverse = 1;
-        for(int y = oldWorld.getSize()[1] - 1; y >= 0; y --){
-            for(int x = 0; x < oldWorld.getSize()[0]; x ++){
-                switch (oldWorld.compositionOfTheTile(x, y)){
-                    case "":
-                        break;
-                    case "floor" :
-                        OldFloor f = new OldFloor(this, x*pixelForBlock, this.getHeight() - hauteurInverse*pixelForBlock);
-                        g.addItem(f);
-                        break;
-                }
-            }
-            hauteurInverse++;
-        }
     }
 
 
     @Override
     protected void createItems() {
-        drawTheWorld(this);
-        OldPlayer j = new OldPlayer(this, (this.getWidth()/2) - 16, this.getHeight()/2  - 32);
-        this.addItem(j);
+        TheoricWorld tW = new TheoricWorld("1-1", 200, 14, WorldType.FLAT);
+        World world = new World(tW, this);
+
+        world.display(64);
+        this.addItem(new Player(this, world, 128, 256));
     }
 
     @Override

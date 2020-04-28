@@ -3,8 +3,8 @@ package supermarioiut;
 import iut.Game;
 import iut.GameItem;
 
-public class OldFloor extends OldBackground {
-    public OldFloor(Game g, int x, int y) {
+public class ZOldFloor extends ZOldBackground {
+    public ZOldFloor(Game g, int x, int y) {
         super(g, "floor", x, y);
     }
 

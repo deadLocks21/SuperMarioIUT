@@ -1,21 +1,23 @@
 package supermarioiut;
 
+import iut.BoxGameItem;
 import iut.Game;
 import iut.GameItem;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-
-public class ZOldPlayer extends ZOldBackground implements KeyListener{
+public class Player extends BoxGameItem implements KeyListener {
     boolean gravityEffect = true;
     boolean collideLeft = false;
     boolean collideRight = false;
     boolean collideTop = false;
-    int walkspeed = 32;
+    int walkspeed = 16;
+    World myWorld;
 
-    public ZOldPlayer(Game g, int x, int y) {
+    public Player(Game g, World aWorld, int x, int y) {
         super(g, "mario", 80, y);
+        this.myWorld = aWorld;
     }
 
 
@@ -98,7 +100,7 @@ public class ZOldPlayer extends ZOldBackground implements KeyListener{
             case KeyEvent.VK_RIGHT:
                 if(this.getRight()<this.getGame().getWidth() && !collideRight) {
                     if(this.getRight() > this.getGame().getWidth()/2){
-                        super.moveTheWorld(walkspeed);
+                        myWorld.moveTheWorld(walkspeed);
                     } else this.moveXY(+walkspeed, 0);
                 }
                 break;
@@ -122,3 +124,4 @@ public class ZOldPlayer extends ZOldBackground implements KeyListener{
 
     }
 }
+

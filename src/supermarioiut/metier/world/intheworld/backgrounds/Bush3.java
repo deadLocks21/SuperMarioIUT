@@ -6,7 +6,7 @@ import supermarioiut.metier.world.World;
 /**
  * Buisson dans le jeu.
  */
-public class Bush1 extends Background {
+public class Bush3 extends Background {
     /**
      * Constructeur d'un fond de notre monde.
      *
@@ -15,12 +15,13 @@ public class Bush1 extends Background {
      * @param x     Valeur ou il apparait.
      * @param y     Valeur ou il apparait.
      */
-    public Bush1(Game g, World world, int x, int y) {
-        super(g, world, "nonInteractive\\bush_1", x, y);
+    public Bush3(Game g, World world, int x, int y) {
+        super(g, world, "nonInteractive\\bush_3", x, y);
     }
 
     @Override
     public String getItemType() {
-        return "BUSH_1";
+        return "BUSH_3";
     }
 }
+

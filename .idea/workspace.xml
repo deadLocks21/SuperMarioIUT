@@ -2,32 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4289b81b-936f-4405-9e70-ef3b02703a37" name="Default Changelist" comment="Classes renommé en vu d'une update de la structure.">
-      <change afterPath="$PROJECT_DIR$/src/supermarioiut/metier/world/intheworld/backgrounds/Background.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/supermarioiut/metier/world/intheworld/backgrounds/BackgroundFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/supermarioiut/metier/world/intheworld/backgrounds/Bush1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/supermarioiut/metier/world/intheworld/blocks/Block.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/supermarioiut/metier/world/intheworld/blocks/BlockFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/supermarioiut/metier/world/intheworld/blocks/BlueFloor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/supermarioiut/metier/world/intheworld/blocks/BlueWall.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/supermarioiut/metier/world/intheworld/blocks/Floor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/supermarioiut/metier/world/intheworld/blocks/HiddenBox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/supermarioiut/metier/world/intheworld/blocks/LuckyBox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/supermarioiut/metier/world/intheworld/blocks/OldLuckyBox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/supermarioiut/metier/world/intheworld/blocks/SolidWall.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/supermarioiut/metier/world/intheworld/blocks/Wall.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/supermarioiut/metier/world/intheworld/backgrounds/Bush3.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/supermarioiut/metier/world/intheworld/backgrounds/Castle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/supermarioiut/metier/world/intheworld/backgrounds/Cloud1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/supermarioiut/metier/world/intheworld/backgrounds/Cloud2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/supermarioiut/metier/world/intheworld/backgrounds/Cloud3.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/supermarioiut/metier/world/intheworld/backgrounds/Hill1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/supermarioiut/metier/world/intheworld/backgrounds/Hill2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/sprites/floor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/sprites/mario.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/supermarioiut/BaseMenu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/supermarioiut/BlockType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/supermarioiut/DisplayWorld.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/supermarioiut/LoadingMenu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/supermarioiut/SuperMarioIUT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/supermarioiut/SuperMarioIUT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/supermarioiut/TheoricWorld.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/supermarioiut/TheoricWorldFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/supermarioiut/TheoricWorldType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/supermarioiut/metier/world/blocks/BlockType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/supermarioiut/metier/world/blocks/ScrollWorld.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/supermarioiut/metier/world/intheworld/ScrollWorld.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/supermarioiut/metier/world/intheworld/backgrounds/Bush1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/supermarioiut/metier/world/intheworld/backgrounds/Bush1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/supermarioiut/metier/world/intheworld/backgrounds/Bush2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/supermarioiut/metier/world/intheworld/backgrounds/Bush2.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +101,7 @@
       <workItem from="1590007320997" duration="2111000" />
       <workItem from="1590010734199" duration="277000" />
       <workItem from="1590011073007" duration="26000" />
-      <workItem from="1590387547763" duration="11729000" />
+      <workItem from="1590387547763" duration="12761000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout des ressources de base.">
       <created>1587734808184</created>
@@ -379,15 +363,6 @@
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1588013664513" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/supermarioiut/metier/world/theoricWorld/TheoricWorld.java</url>
-          <line>147</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="type" />

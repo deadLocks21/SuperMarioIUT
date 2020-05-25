@@ -1,7 +1,8 @@
-package supermarioiut.metier.world.blocks;
+package supermarioiut.metier.world.intheworld;
 
 import iut.BoxGameItem;
 import iut.Game;
+import iut.GameItem;
 import supermarioiut.metier.world.World;
 
 /**
@@ -36,20 +37,16 @@ public abstract class ScrollWorld extends BoxGameItem {
     }
 
 
-    /**
-     * Méthode abstraite permettant de récupérer le type du block.
-     *
-     *
-     * @return Type du block.
-     */
-    public abstract String getItemType();
-
-
     @Override
     public void evolve(long l) {
         int theoricPoint = basePoint - world.getProgressPoint();
         int moveX = theoricPoint - this.getLeft();
 
         moveXY(moveX, 0);
+    }
+
+    @Override
+    public void collideEffect(GameItem gameItem) {
+
     }
 }

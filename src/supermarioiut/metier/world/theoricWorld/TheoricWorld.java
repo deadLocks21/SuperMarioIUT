@@ -85,19 +85,11 @@ public class TheoricWorld {
      * Change le carreau (x, y) en tile de notre monde.
      *
      *
-     * @param x    Valeur x de la case à changer.
-     * @param y    Valeur y de la case à changer.
-     * @param tile Case à ajouter.
+     * @param x         Valeur x de la case à changer.
+     * @param y         Valeur y de la case à changer.
+     * @param blockName Case à changer.
      */
-    private void changeATile(int x, int y, String tile) {
-        String blockName = null;
-
-        switch (tile){
-            // TODO Ajouter les nouveaux types de bloc.
-            default:
-                blockName = "";
-        }
-
+    private void changeATile(int x, int y, String blockName) {
         compisitionOfTheWorld[y][x] = blockName;
     }
 
@@ -105,16 +97,7 @@ public class TheoricWorld {
      * Retourne le nom du bloc présent aux coordonnées (x, y)
      */
     public String compositionOfTheTile(int x, int y) {
-        String caseName = compisitionOfTheWorld[y][x];
-        String res = null;
-
-        switch (caseName){
-            // TODO Ajouter les nouvelles cases.
-            default:
-                res = "VOID";
-        }
-
-        return res;
+        return compisitionOfTheWorld[y][x];
     }
 
     /**
@@ -161,7 +144,6 @@ public class TheoricWorld {
             }
             ret.append("\n");
         }
-
 
         return ret.toString();
     }

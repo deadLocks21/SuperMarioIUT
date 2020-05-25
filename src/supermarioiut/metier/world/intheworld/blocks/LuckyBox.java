@@ -7,6 +7,9 @@ import supermarioiut.metier.world.World;
  * Boite contenant un champignon.
  */
 public class LuckyBox extends Block {
+    int state = 1;
+    int delay = 0;
+
     /**
      * Constructeur d'un bloc de notre monde.
      *
@@ -23,5 +26,32 @@ public class LuckyBox extends Block {
     @Override
     public String getItemType() {
         return "LUCKY_BOX";
+    }
+
+    @Override
+    public void evolve(long l){
+        super.evolve(l);
+        delay += l;
+
+        if(state == 1){
+            if(delay > 300){
+                state ++;
+
+                super.changeSprite("interactive\\animated\\immobile\\luckyBox\\state_" + state);
+
+                delay = 0;
+            }
+        } else {
+            if(delay > 100){
+                state ++;
+
+                if(state > 4)
+                    state = 1;
+
+                super.changeSprite("interactive\\animated\\immobile\\luckyBox\\state_" + state);
+
+                delay = 0;
+            }
+        }
     }
 }

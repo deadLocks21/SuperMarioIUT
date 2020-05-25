@@ -1,6 +1,8 @@
-package supermarioiut;
+package supermarioiut.metier.menus;
 
 import iut.Game;
+import supermarioiut.metier.world.DisplayWorld;
+import supermarioiut.metier.world.theoricWorld.TheoricWorld;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

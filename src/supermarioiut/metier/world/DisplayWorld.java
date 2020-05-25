@@ -1,6 +1,7 @@
-package supermarioiut;
+package supermarioiut.metier.world;
 
 import iut.Game;
+import supermarioiut.metier.world.theoricWorld.TheoricWorld;
 
 /**
  * Permet d'afficher un monde.
@@ -36,6 +37,6 @@ public class DisplayWorld {
      * @param pixelForBlock Taille d'un bloc en pixel.
      */
     public void display(int pixelForBlock){
-        // TODO Implémenter l'affichage du monde.
+        // TODO Implémenter l'affichage du monde. Nécessite d'avoir les blocs ...
     }
 }

@@ -1,4 +1,4 @@
-package supermarioiut;
+package supermarioiut.metier.world.theoricWorld;
 
 /**
  * Classe permettant de savoir de quoi est composé un monde.
@@ -89,7 +89,7 @@ public class TheoricWorld {
      * @param y    Valeur y de la case à changer.
      * @param tile Case à ajouter.
      */
-    private void changeATile(int x, int y, BlockType tile) {
+    private void changeATile(int x, int y, String tile) {
         String blockName = null;
 
         switch (tile){
@@ -104,14 +104,14 @@ public class TheoricWorld {
     /**
      * Retourne le nom du bloc présent aux coordonnées (x, y)
      */
-    public BlockType compositionOfTheTile(int x, int y) {
+    public String compositionOfTheTile(int x, int y) {
         String caseName = compisitionOfTheWorld[y][x];
-        BlockType res = null;
+        String res = null;
 
         switch (caseName){
             // TODO Ajouter les nouvelles cases.
             default:
-                res = null;
+                res = "VOID";
         }
 
         return res;
@@ -154,6 +154,8 @@ public class TheoricWorld {
                     case "floor" :
                         ret.append("F");
                         break;*/
+                    default:
+                        ret.append("V");
                     // TODO Ajouter les nouveaux blocks.
                 }
             }

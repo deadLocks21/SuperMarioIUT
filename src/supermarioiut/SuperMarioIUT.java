@@ -1,11 +1,16 @@
 package supermarioiut;
 
-import iut.Game;
 import iut.Vector;
+import supermarioiut.metier.world.World;
+import supermarioiut.metier.world.intheworld.backgrounds.Bush1;
+import supermarioiut.metier.world.intheworld.blocks.Floor;
+import supermarioiut.metier.world.theoricWorld.TheoricWorld;
+import supermarioiut.metier.world.theoricWorld.TheoricWorldFactory;
 
 import java.awt.*;
-import java.time.chrono.ThaiBuddhistEra;
-import java.util.ArrayList;
+
+import static supermarioiut.metier.world.theoricWorld.TheoricWorldType.FLAT;
+import static supermarioiut.metier.world.theoricWorld.TheoricWorldType.VOID;
 
 public class SuperMarioIUT extends iut.Game {
     public static void main(String[] args) {
@@ -16,11 +21,16 @@ public class SuperMarioIUT extends iut.Game {
 
     public SuperMarioIUT() {
         super(1280, 960, "Super Mario IUT");
+        TheoricWorldFactory.create(10, 10, FLAT);
     }
 
 
     @Override
     protected void createItems() {
+        TheoricWorld theoricWorld = new TheoricWorld("", 10, 10, VOID);
+        World world = new World(theoricWorld, this);
+
+        addItem(new Bush1(this, world, 0, 0));
     }
 
     @Override

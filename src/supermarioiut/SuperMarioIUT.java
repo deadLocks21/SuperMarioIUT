@@ -15,18 +15,12 @@ public class SuperMarioIUT extends iut.Game {
 
 
     public SuperMarioIUT() {
-        super(1024, 960, "Super Mario IUT");
-
+        super(1280, 960, "Super Mario IUT");
     }
 
 
     @Override
     protected void createItems() {
-        TheoricWorld tW = new TheoricWorld("1-1", 50, 14, WorldType.BOX);
-        World world = new World(tW, this);
-
-        world.display(64);
-        this.addItem(new Player(this, world, 128, 256));
     }
 
     @Override

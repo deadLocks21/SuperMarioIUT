@@ -1,84 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4289b81b-936f-4405-9e70-ef3b02703a37" name="Default Changelist" comment="" />
+    <list default="true" id="4289b81b-936f-4405-9e70-ef3b02703a37" name="Default Changelist" comment="Classes renommé en vu d'une update de la structure.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SuperMarioIUT.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SuperMarioIUT.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SuperMarioIUT/META-INF/SuperMarioIUT.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SuperMarioIUT/floor.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SuperMarioIUT/mario.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SuperMarioIUT/supermarioiut/BackgroundBlock.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SuperMarioIUT/supermarioiut/Floor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SuperMarioIUT/supermarioiut/Player.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SuperMarioIUT/supermarioiut/SuperMarioIUT.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SuperMarioIUT/supermarioiut/TheoricWorld$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SuperMarioIUT/supermarioiut/TheoricWorld.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SuperMarioIUT/supermarioiut/World.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SuperMarioIUT/supermarioiut/WorldType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SuperMarioIUT/supermarioiut/ZOldBackground.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SuperMarioIUT/supermarioiut/ZOldFloor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SuperMarioIUT/supermarioiut/ZOldPlayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SuperMarioIUT/supermarioiut/ZOldSuperMarioIUT.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SuperMarioIUT/supermarioiut/ZOldWorld.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/supermarioiut/BackgroundBlock.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/supermarioiut/Floor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/supermarioiut/Player.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/supermarioiut/SuperMarioIUT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/supermarioiut/SuperMarioIUT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/supermarioiut/TheoricWorld.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/supermarioiut/World.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/supermarioiut/WorldType.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1azLDLgDuFBAIWL11w6XlppPoBb" />
-  <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="untitled104" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="untitled104" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="untitled104" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="untitled104" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="untitled104" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="company" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-    </panes>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Facets" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Users\deadLocks21\Documents\projet\SuperMarioIUT\res\sprites" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="supermarioiut.Main" />
+      <option name="MAIN_CLASS_NAME" value="supermarioiut.SuperMarioIUT" />
       <module name="SuperMarioIUT" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -90,7 +98,257 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1587733354161</updated>
+      <workItem from="1587733356501" duration="14150000" />
+      <workItem from="1587752570273" duration="946000" />
+      <workItem from="1587913657709" duration="57000" />
+      <workItem from="1587994994054" duration="8826000" />
+      <workItem from="1588012912161" duration="2493000" />
+      <workItem from="1588069674218" duration="1004000" />
+      <workItem from="1588163836273" duration="5568000" />
+      <workItem from="1588838066362" duration="66000" />
+      <workItem from="1589808221126" duration="1288000" />
+      <workItem from="1589875950461" duration="29000" />
+      <workItem from="1590007320997" duration="2111000" />
+      <workItem from="1590010734199" duration="277000" />
+      <workItem from="1590011073007" duration="26000" />
+      <workItem from="1590387547763" duration="303000" />
     </task>
+    <task id="LOCAL-00001" summary="Ajout des ressources de base.">
+      <created>1587734808184</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1587734808184</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Ajout des classes et méthodes de base">
+      <created>1587735934025</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1587735934025</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Ajout du sol">
+      <created>1587744406513</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1587744406513</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Création d'un monde et affichage de ce dernier">
+      <created>1587744479283</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1587744479283</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Correction problèmes mineurs">
+      <created>1587744562809</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1587744562809</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Basic collide system.">
+      <created>1587744631721</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1587744631721</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Gestion des collision améliorée">
+      <created>1587746605411</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1587746605411</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Amélioration de mon monde">
+      <created>1587746643842</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1587746643842</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Classes renommé en vu d'une update de la structure.">
+      <created>1588002089691</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1588002089691</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Enumeration des différents types de monde possible.">
+      <created>1588002264220</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1588002264220</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Clean du code, avancement du monde opérationel">
+      <created>1588070266636</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1588070266636</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Update structure.">
+      <created>1588163880221</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1588163880221</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Ajout des ressources de base." />
+    <MESSAGE value="Ajout des classes et méthodes de base" />
+    <MESSAGE value="Ajout du sol" />
+    <MESSAGE value="Création d'un monde et affichage de ce dernier" />
+    <MESSAGE value="Correction problèmes mineurs" />
+    <MESSAGE value="Basic collide system." />
+    <MESSAGE value="Gestion des collision améliorée" />
+    <MESSAGE value="Amélioration de mon monde" />
+    <MESSAGE value="Reformatage des classes" />
+    <MESSAGE value="Classes renommé en vu d'une update de la structure." />
+    <MESSAGE value="Enumeration des différents types de monde possible." />
+    <MESSAGE value="Clean du code, avancement du monde opérationel" />
+    <MESSAGE value="Update structure." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update structure." />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="414" y="182" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590010892184">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1588013716620" />
+    <state x="414" y="182" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1590010892184" />
+    <state x="765" y="238" key="#com.intellij.ide.util.MemberChooser" timestamp="1590007413526">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1588166617870" />
+    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1587752862109" />
+    <state x="765" y="238" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1590007413526" />
+    <state x="689" y="304" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1587734968896">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="689" y="304" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1587734968896" />
+    <state x="515" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1588004534194">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="515" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1588004534194" />
+    <state x="2435" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1588001961723" />
+    <state x="690" y="277" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1590387565512">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1588004481670" />
+    <state x="690" y="277" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1590387565512" />
+    <state x="920" y="188" width="815" height="811" key="CommitChangelistDialog2" timestamp="1588163879090">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="920" y="188" width="815" height="811" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1588163879090" />
+    <state x="2840" y="195" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1588002262780" />
+    <state x="920" y="188" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1588070265076" />
+    <state x="184" y="0" key="DiffContextDialog" timestamp="1587744431623">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="184" y="0" key="DiffContextDialog/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1587744431623" />
+    <state x="666" y="281" key="FileChooserDialogImpl" timestamp="1590011097471">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2586" y="281" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1587733582822" />
+    <state x="666" y="271" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1588070667570" />
+    <state x="666" y="281" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1590011097471" />
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1590387716296">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="269" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1588166570892" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1588002062601" />
+    <state width="1877" height="269" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1588096169834" />
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1590387716296" />
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1590009441341" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1590387716296">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="269" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1588166570891" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1588002062600" />
+    <state width="1877" height="269" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1588096169833" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1590387716296" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1590009441341" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1590387716295">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="269" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1588166570890" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1588002062600" />
+    <state width="1877" height="269" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1588096169833" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1590387716295" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1590009441341" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1590387716296">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="269" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1588166570892" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1588002062601" />
+    <state width="1877" height="269" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1588096169834" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1590387716296" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1590009441341" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1588004722685">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1588004722685" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1587995743121" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1588004722685">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1588004722685" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1587995743121" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1588004722685">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1588004722685" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1587995743121" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1588004722685">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1588004722685" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1587995743121" />
+    <state x="440" y="114" key="SettingsEditor" timestamp="1590010918690">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2360" y="114" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1587733597826" />
+    <state x="440" y="114" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1590010918690" />
+    <state x="2742" y="439" key="WebDeployment.AddServerDialog.v.1" timestamp="1587733457418">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2742" y="439" key="WebDeployment.AddServerDialog.v.1/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1587733457418" />
+    <state x="656" y="357" key="com.intellij.ide.util.TipDialog" timestamp="1590011083451">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1588012912593" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1588069693313" />
+    <state x="656" y="357" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1590011083451" />
+    <state x="342" y="145" key="new project wizard" timestamp="1590009438690">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="342" y="140" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1588070676497" />
+    <state x="342" y="145" key="new project wizard/0.0.1920.1080@0.0.1920.1080" timestamp="1590009438690" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1588013664513">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1588013664513" />
   </component>
 </project>

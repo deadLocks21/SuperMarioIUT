@@ -1,16 +1,8 @@
 package supermarioiut;
 
 import iut.Vector;
-import supermarioiut.metier.world.World;
-import supermarioiut.metier.world.intheworld.backgrounds.Bush1;
-import supermarioiut.metier.world.intheworld.blocks.Floor;
-import supermarioiut.metier.world.theoricWorld.TheoricWorld;
-import supermarioiut.metier.world.theoricWorld.TheoricWorldFactory;
-
 import java.awt.*;
 
-import static supermarioiut.metier.world.theoricWorld.TheoricWorldType.FLAT;
-import static supermarioiut.metier.world.theoricWorld.TheoricWorldType.VOID;
 
 public class SuperMarioIUT extends iut.Game {
     public static void main(String[] args) {
@@ -21,16 +13,22 @@ public class SuperMarioIUT extends iut.Game {
 
     public SuperMarioIUT() {
         super(1280, 960, "Super Mario IUT");
-        TheoricWorldFactory.create(10, 10, FLAT);
+        // System.out.println(String.valueOf("Hello World\nTim".charAt(12)).equals("T"));
     }
 
 
     @Override
     protected void createItems() {
-        TheoricWorld theoricWorld = new TheoricWorld("", 10, 10, VOID);
-        World world = new World(theoricWorld, this);
+        // TheoricWorld theoricWorld = new TheoricWorld("", 14, 14, VOID);
+//        TheoricWorld theoricWorld = new TheoricWorld("test");
+//        World world = new World(theoricWorld, this);
+//        world.display(64);
+//        Master master = new Master(world, this);
+//
+//        addItem(new LuckyBox(this, world, 0, 0));
+//        addItem(master);
 
-        addItem(new Bush1(this, world, 0, 0));
+        // System.out.println(theoricWorld.toString());
     }
 
     @Override

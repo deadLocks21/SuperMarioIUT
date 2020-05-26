@@ -1,6 +1,9 @@
 package supermarioiut;
 
 import iut.Vector;
+import supermarioiut.metier.Master;
+import supermarioiut.metier.World;
+
 import java.awt.*;
 
 
@@ -13,22 +16,12 @@ public class SuperMarioIUT extends iut.Game {
 
     public SuperMarioIUT() {
         super(1280, 960, "Super Mario IUT");
-        // System.out.println(String.valueOf("Hello World\nTim".charAt(12)).equals("T"));
     }
 
 
     @Override
     protected void createItems() {
-        // TheoricWorld theoricWorld = new TheoricWorld("", 14, 14, VOID);
-//        TheoricWorld theoricWorld = new TheoricWorld("test");
-//        World world = new World(theoricWorld, this);
-//        world.display(64);
-//        Master master = new Master(world, this);
-//
-//        addItem(new LuckyBox(this, world, 0, 0));
-//        addItem(master);
-
-        // System.out.println(theoricWorld.toString());
+        addItem(new Master(this));
     }
 
     @Override

@@ -24,7 +24,21 @@ public class Master extends BoxGameItem implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent keyEvent) {
-        ScrollWorld.moveTheWorld(10);
+        if (keyEvent.getKeyCode() == KeyEvent.VK_P){
+            World myWorld = World.getInstance();
+            myWorld.init(getGame(), "1-1");
+
+            myWorld.display();
+        }
+
+        if (keyEvent.getKeyCode() == KeyEvent.VK_LEFT){
+            ScrollWorld.moveTheWorld(-20);
+        }
+        if (keyEvent.getKeyCode() == KeyEvent.VK_RIGHT){
+            ScrollWorld.moveTheWorld(20);
+        }
+
+
         // TODO Gestion des touches
     }
 

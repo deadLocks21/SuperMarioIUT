@@ -3,6 +3,9 @@ package supermarioiut.metier.intheworld.backgrounds;
 import iut.Game;
 import supermarioiut.metier.intheworld.ScrollWorld;
 
+/**
+ * Représente un décor du jeu.
+ */
 public abstract class Background extends ScrollWorld {
     /**
      * Constructeur d'un bloc mouvant de notre monde.

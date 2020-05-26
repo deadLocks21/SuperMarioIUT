@@ -1,9 +1,16 @@
 package supermarioiut.metier;
 
+import iut.BoxGameItem;
 import iut.Game;
-import iut.GameItem;
+import iut.BoxGameItem;
+import supermarioiut.metier.intheworld.backgrounds.*;
+import supermarioiut.metier.intheworld.blocks.Floor;
+import supermarioiut.metier.intheworld.blocks.LuckyBox;
+import supermarioiut.metier.intheworld.blocks.SolidWall;
+import supermarioiut.metier.intheworld.blocks.Wall;
 
 import java.awt.*;
+import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -29,7 +36,7 @@ public class World {
     /**
      * Liste des items du jeu.
      */
-    private ArrayList<GameItem> listeDesObjets;
+    private ArrayList<BoxGameItem> listeDesObjets;
 
 
     /**
@@ -38,6 +45,7 @@ public class World {
     private World(){
         setGame(null);
         setWorldName(null);
+        listeDesObjets = new ArrayList<>();
     }
 
 
@@ -86,6 +94,8 @@ public class World {
         if(instance != null) {
             setGame(game);
             setWorldName(worldName);
+
+            getObjectList();
         }
     }
 
@@ -93,7 +103,7 @@ public class World {
      * Permet de nettoyer l'affichage du jeu.
      */
     public void clear(){
-        for (GameItem item : listeDesObjets)
+        for (BoxGameItem item : listeDesObjets)
             game.remove(item);
 
         listeDesObjets.clear();
@@ -103,38 +113,9 @@ public class World {
      * Permet d'afficher le monde worldName.
      */
     public void display(){
-        // TODO Affichage des contenus des fichiers.
-
-        // Méthode d'affichage d'avant.
-        /*
-         * Affiche theoricWorld.
-         *
-         *
-         * @param world         Monde dont dépendent les blocs.
-         * @param pixelForBlock Nombre de pixels pour un bloc.
-         */
-        /*public void display(World world, int pixelForBlock){
-            int hauteurInverse = 1;
-            for(int y = theoricWorld.getSize()[1] - 1; y >= 0; y --){
-                for(int x = 0; x < theoricWorld.getSize()[0]; x ++){
-                    switch (theoricWorld.compositionOfTheTile(x, y)){
-                        case "F" :
-                            Floor f = new Floor(game, world, x*pixelForBlock, game.getHeight() - hauteurInverse*pixelForBlock);
-                            game.addItem(f);
-                            break;
-                        case "L" :
-                            LuckyBox l = new LuckyBox(game, world, x*pixelForBlock, game.getHeight() - hauteurInverse*pixelForBlock);
-                            game.addItem(l);
-                            break;
-                        case "W" :
-                            Wall w = new Wall(game, world, x*pixelForBlock, game.getHeight() - hauteurInverse*pixelForBlock);
-                            game.addItem(w);
-                            break;
-                    }
-                }
-                hauteurInverse++;
-            }
-        }*/
+        for (BoxGameItem item : listeDesObjets) {
+            game.addItem(item);
+        }
     }
 
     /**
@@ -146,6 +127,93 @@ public class World {
      */
     public void backgroundColor(Color color){
         game.setBackground(color);
+    }
+
+    private void getObjectList(){
+        File repo = new File("res\\worlds\\" + worldName + "\\items\\");
+        String objectName[] = repo.list();
+
+        if (objectName != null) {
+            for (int i = 0; i < objectName.length; i++) {
+
+                try{
+                    InputStream flux=new FileInputStream("res\\worlds\\" + worldName + "\\items\\" + objectName[i]);
+                    InputStreamReader lecture=new InputStreamReader(flux);
+                    BufferedReader buff=new BufferedReader(lecture);
+                    String ligne;
+                    while ((ligne=buff.readLine())!=null){
+                        // TODO Ajouter les blocs et leurs spéc.
+                        String[] infos = ligne.split(" ");  // On split les coo et les paramètres.
+                        int x = Integer.parseInt(infos[0]) * PIXEL_FOR_A_BLOCK;  // On récupère x
+                        int y = Integer.parseInt(infos[1]) * PIXEL_FOR_A_BLOCK;  // On récupère y
+
+                        BoxGameItem object = null;
+
+                        switch (objectName[i]){
+                            case "BUSH_1":
+                                object = new Bush1(game, x, y);
+                                break;
+                            case "BUSH_2":
+                                object = new Bush2(game, x, y);
+                                break;
+                            case "BUSH_3":
+                                object = new Bush3(game, x, y);
+                                break;
+                            case "CASTLE":
+                                object = new Castle(game, x, y);
+                                break;
+                            case "CLOUD_1":
+                                object = new Cloud1(game, x, y);
+                                break;
+                            case "CLOUD_2":
+                                object = new Cloud2(game, x, y);
+                                break;
+                            case "CLOUD_3":
+                                object = new Cloud3(game, x, y);
+                                break;
+                            case "FLOOR":
+                                object = new Floor(game, x, y);
+                                break;
+                            case "HILL_1":
+                                object = new Hill1(game, x, y);
+                                break;
+                            case "HILL_2":
+                                object = new Hill2(game, x, y);
+                                break;
+                            case "LUCKY_BOX":
+                                object = new LuckyBox(game, x, y);
+                                break;
+                            case "PIPE_1":
+                                object = new Pipe1(game, x, y);
+                                break;
+                            case "PIPE_2":
+                                object = new Pipe2(game, x, y);
+                                break;
+                            case "PIPE_3":
+                                object = new Pipe3(game, x, y);
+                                break;
+                            case "SOLID_WALL":
+                                object = new SolidWall(game, x, y);
+                                break;
+                            case "WALL":
+                                object = new Wall(game, x, y);
+                                break;
+                        }
+
+                        if(object != null)
+                            listeDesObjets.add(object);
+                    }
+                    buff.close();
+                }
+                catch (Exception e){
+                    System.out.println(e.toString());
+                }
+
+                System.out.println(objectName[i]);
+            }
+        } else {
+            System.err.println("Nom de repertoire invalide");
+        }
     }
 }
 

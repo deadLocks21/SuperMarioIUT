@@ -38,7 +38,6 @@ public class Master extends BoxGameItem implements KeyListener {
             ScrollWorld.moveTheWorld(20);
         }
 
-
         // TODO Gestion des touches
     }
 

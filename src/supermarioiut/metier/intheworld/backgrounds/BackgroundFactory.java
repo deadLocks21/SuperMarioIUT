@@ -3,7 +3,21 @@ package supermarioiut.metier.intheworld.backgrounds;
 import iut.Game;
 import supermarioiut.metier.World;
 
+/**
+ * Fabrique à background.
+ */
 public class BackgroundFactory {
+    /**
+     * Méthode static pour créer des backgrounds.
+     *
+     *
+     * @param g    Instance du jeu.
+     * @param x    Coordonnée x du bloc.
+     * @param y    Coordonnée y du bloc.
+     * @param type Type du bloc à créer.
+     *
+     * @return Background créé.
+     */
     public static Background create(Game g, int x, int y, String type){
         Background ret;
 

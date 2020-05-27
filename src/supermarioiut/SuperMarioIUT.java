@@ -2,7 +2,9 @@ package supermarioiut;
 
 import iut.Vector;
 import supermarioiut.metier.Master;
+import supermarioiut.metier.Player;
 import supermarioiut.metier.World;
+import supermarioiut.metier.intheworld.blocks.Wall;
 
 import java.awt.*;
 
@@ -21,7 +23,8 @@ public class SuperMarioIUT extends iut.Game {
 
     @Override
     protected void createItems() {
-        addItem(new Master(this));
+        addItem(new Wall(this, 0, 200));
+        addItem(new Player(this, 0, 512));
     }
 
     @Override
@@ -52,6 +55,6 @@ public class SuperMarioIUT extends iut.Game {
 
     @Override
     public Vector getGravity() {
-        return new Vector();
+        return new Vector(1, 1);
     }
 }

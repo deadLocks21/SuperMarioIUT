@@ -3,7 +3,21 @@ package supermarioiut.metier.intheworld.blocks;
 import iut.Game;
 import supermarioiut.metier.intheworld.blocks.Block;
 
+/**
+ * Fabrique à bloc.
+ */
 public class BlockFactory {
+    /**
+     * Méthode static pour créer des blocs.
+     *
+     *
+     * @param g    Instance du jeu.
+     * @param x    Coordonnée x du bloc.
+     * @param y    Coordonnée y du bloc.
+     * @param type Type du bloc à créer.
+     *
+     * @return Bloc créé.
+     */
     public static Block create(Game g, int x, int y, String type){
         Block ret;
 

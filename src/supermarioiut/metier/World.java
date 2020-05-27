@@ -119,29 +119,21 @@ public class World {
     }
 
     /**
-     * Permet de changer la couleur du fond de notre jeu.
-     * (Utilisé notament pour les mondes souterrains.)
-     *
-     *
-     * @param color Nouvelle couleur de background.
+     * Permet de récupérer le contenu du monde et de le stocker dans la liste.
      */
-    public void backgroundColor(Color color){
-        game.setBackground(color);
-    }
-
     private void getObjectList(){
         File repo = new File("res\\worlds\\" + worldName + "\\items\\");
-        String objectName[] = repo.list();
+        String[] objectName = repo.list();
 
         if (objectName != null) {
-            for (int i = 0; i < objectName.length; i++) {
+            for (String s : objectName) {
 
-                try{
-                    InputStream flux=new FileInputStream("res\\worlds\\" + worldName + "\\items\\" + objectName[i]);
-                    InputStreamReader lecture=new InputStreamReader(flux);
-                    BufferedReader buff=new BufferedReader(lecture);
+                try {
+                    InputStream flux = new FileInputStream("res\\worlds\\" + worldName + "\\items\\" + s);
+                    InputStreamReader lecture = new InputStreamReader(flux);
+                    BufferedReader buff = new BufferedReader(lecture);
                     String ligne;
-                    while ((ligne=buff.readLine())!=null){
+                    while ((ligne = buff.readLine()) != null) {
                         // TODO Ajouter les blocs et leurs spéc.
                         String[] infos = ligne.split(" ");  // On split les coo et les paramètres.
                         int x = Integer.parseInt(infos[0]) * PIXEL_FOR_A_BLOCK;  // On récupère x
@@ -149,7 +141,7 @@ public class World {
 
                         BoxGameItem object = null;
 
-                        switch (objectName[i]){
+                        switch (s) {
                             case "BUSH_1":
                                 object = new Bush1(game, x, y);
                                 break;
@@ -200,20 +192,36 @@ public class World {
                                 break;
                         }
 
-                        if(object != null)
+                        if (object != null)
                             listeDesObjets.add(object);
                     }
                     buff.close();
-                }
-                catch (Exception e){
+                } catch (Exception e) {
                     System.out.println(e.toString());
                 }
-
-                System.out.println(objectName[i]);
             }
         } else {
             System.err.println("Nom de repertoire invalide");
         }
     }
+
+    /*private void displayBackground(){
+        try {
+            InputStream flux = new FileInputStream("res\\worlds\\" + worldName + "\\data");
+            InputStreamReader lecture = new InputStreamReader(flux);
+            BufferedReader buff = new BufferedReader(lecture);
+            String ligne;
+            while ((ligne = buff.readLine()) != null) {
+                String red = String.valueOf(ligne.charAt(19) + ligne.charAt(20) + ligne.charAt(21));
+                String green = String.valueOf(ligne.charAt(24) + ligne.charAt(25) + ligne.charAt(26));
+                String blue = String.valueOf(ligne.charAt(29) + ligne.charAt(30) + ligne.charAt(31));
+
+                backgroundColor(new Color(Integer.parseInt(red), Integer.parseInt(green), Integer.parseInt(blue)));
+            }
+            buff.close();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }*/
 }
 

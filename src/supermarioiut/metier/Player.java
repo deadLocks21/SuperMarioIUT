@@ -1,21 +1,32 @@
 package supermarioiut.metier;
 
 import iut.Game;
+import iut.GameItem;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.security.Key;
 
 public class Player extends Entity implements KeyListener {
-    int pressedKey = 0;
-    int oldPressedKey = 0;
-    int c = 0;
+    private boolean jump;
+    // private boolean jumpWithKey;
+    private boolean fall;
+    private boolean holdKey;
+    private int pressedKey;
+    private int startHeight;
+    private int MAX_HEIGHT = 150;
+
+
 
     public Player(Game g, int x, int y) {
         super(g, "interactive\\animated\\controlable\\mario_1\\static", x, y);
-        World myWorld = World.getInstance();
-        myWorld.init(g, "1-1");
 
-        myWorld.display();
+        jump = false;
+        // jumpWithKey = false;
+        fall = true;
+        holdKey = false;
+        pressedKey = 0;
+        startHeight = 0;
     }
 
 
@@ -26,27 +37,24 @@ public class Player extends Entity implements KeyListener {
 
     @Override
     public void evolve(long l){
-        System.out.println("pressedKey " + pressedKey + "     oldPressedKey " + oldPressedKey + "     super.v0 " + super.v0 + "     c " + c);
+        if(pressedKey == KeyEvent.VK_UP || jump)
+            super.gravity = false;
 
+        if(jump || fall)
+            this.changeSprite("interactive\\animated\\controlable\\mario_1\\jump");
 
-        if (pressedKey == KeyEvent.VK_UP && oldPressedKey ==0 && !super.gravity && !super.oldGravity){
-            super.v0 = (float) -11;
-            super.t = 1;
-            super.gravity = true;
-            super.oldGravity = true;
+        super.evolve(l);
+    }
+
+    @Override
+    public void collideEffect(GameItem gameItem){
+        if(gameItem.getItemType().equals("FLOOR") || gameItem.getItemType().equals("PIPE") || gameItem.getItemType().equals("LUCKY_BOX") || gameItem.getItemType().equals("WALL")) {
+            fall = false;
+            jump = false;
+            this.changeSprite("interactive\\animated\\controlable\\mario_1\\static");
         }
 
-
-        if(pressedKey == KeyEvent.VK_UP)
-            super.gravity();
-        else
-            super.theGravity();
-
-
-         super.gravity = true;
-
-
-        oldPressedKey = pressedKey;
+        super.collideEffect(gameItem);
     }
 
     @Override
@@ -57,26 +65,40 @@ public class Player extends Entity implements KeyListener {
     @Override
     public void keyPressed(KeyEvent keyEvent) {
         pressedKey = keyEvent.getKeyCode();
+        holdKey = keyEvent.getKeyCode() == pressedKey;
 
-        if (keyEvent.getKeyCode() == 40){
-            moveXY(0, 20);
+        if(keyEvent.getKeyCode() == KeyEvent.VK_UP && !jump && !fall) {
+            super.Vy = -8;
+            super.gravity = false;
+            jump = false;
+            fall = true;
+            startHeight = this.getTop();
         }
-        if (keyEvent.getKeyCode() == 37){
-            moveXY(-20, 0);
-        }
-        if (keyEvent.getKeyCode() == 39){
-            moveXY(20, 0);
-        }
+
+        if(keyEvent.getKeyCode() == KeyEvent.VK_LEFT)
+            super.Vx = -4;
+
+        if(keyEvent.getKeyCode() == KeyEvent.VK_RIGHT)
+            super.Vx = 4;
+
+        refreshPosition();
     }
 
     @Override
     public void keyReleased(KeyEvent keyEvent) {
-        if(KeyEvent.VK_UP == keyEvent.getKeyCode()){
-            pressedKey = 0;
-            // super.v0 = 0;
-
-            if(super.t < 31)
-                super.t = 0;
+        if(keyEvent.getKeyCode() == KeyEvent.VK_UP) {
+            super.Vy = 0;
+            super.gravity = true;
+            super.t = 0;
+            super.v0 = -10;
         }
+
+        if(keyEvent.getKeyCode() == KeyEvent.VK_LEFT)
+            super.Vx = 0;
+
+        if(keyEvent.getKeyCode() == KeyEvent.VK_RIGHT)
+            super.Vx = 0;
+
+        pressedKey = 0;
     }
 }

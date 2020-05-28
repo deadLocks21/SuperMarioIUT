@@ -5,44 +5,49 @@ import iut.Game;
 import iut.GameItem;
 
 public abstract class Entity extends BoxGameItem {
-    float G = (float)-20/100;  // Constante G dans Mario.
+    float G = (float)-40/100;  // Constante G dans Mario.
     boolean oldGravity;
     boolean gravity;
     int t;
-    float v0;
+    int v0;
+    double Vx;
+    double Vy;
 
 
     public Entity(Game g, String nom, int x, int y) {
         super(g, nom, x, y);
         gravity = true;
         oldGravity = false;
+        t = 0;
         v0 = 0;
+        Vx = 0;
+        Vy = 0;
     }
 
 
     public void gravity(){
-        moveXY(0, -G * t  + v0);
-        t++;
-    }
-
-    public void theGravity(){
         if (gravity){
             if (!oldGravity){
                 t = 1;
                 oldGravity = true;
             }
-            gravity();
+            Vy = -G * t + v0;
+            t++;
         }
     }
 
-    public void printGI(){
-        System.out.println("G = " + gravity + "    oG = " + oldGravity + "    t = " + t + "    v0 = " + v0 + "    v = " + (G * 2 * t  + v0*2));
+    public void refreshPosition(){
+        System.out.println("Vy " + Vy);
+        moveXY(Vx, Vy);
     }
 
 
     @Override
     public void evolve(long l) {
-        printGI();
+        gravity();
+        refreshPosition();
+
+        gravity = true;
     }
 
     @Override
@@ -52,6 +57,8 @@ public abstract class Entity extends BoxGameItem {
             oldGravity = false;
             t = 0;
             v0 = 0;
+            Vy = 0;
+
             moveXY(0, gameItem.getTop()-this.getBottom());
         }
     }

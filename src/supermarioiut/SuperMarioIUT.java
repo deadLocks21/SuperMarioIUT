@@ -1,7 +1,6 @@
 package supermarioiut;
 
 import iut.Vector;
-import supermarioiut.metier.Master;
 import supermarioiut.metier.Player;
 import supermarioiut.metier.World;
 import supermarioiut.metier.intheworld.blocks.Wall;
@@ -23,7 +22,12 @@ public class SuperMarioIUT extends iut.Game {
 
     @Override
     protected void createItems() {
-        addItem(new Wall(this, 0, 200));
+        World myWorld = World.getInstance();
+        myWorld.init(this, "1-1");
+
+        myWorld.display();
+
+
         addItem(new Player(this, 0, 512));
     }
 

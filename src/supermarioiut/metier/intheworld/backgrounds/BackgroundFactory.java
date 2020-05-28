@@ -23,40 +23,40 @@ public class BackgroundFactory {
 
         switch (type){
             case "BUSH_1":
-                ret = new Bush1(g, x, y);
+                ret = new Background(g, "nonInteractive\\bush_1", x, y);
                 break;
             case "BUSH_2":
-                ret = new Bush2(g, x, y);
+                ret = new Background(g, "nonInteractive\\bush_2", x, y);
                 break;
             case "BUSH_3":
-                ret = new Bush3(g, x, y);
+                ret = new Background(g, "nonInteractive\\bush_3", x, y);
                 break;
             case "CASTLE":
-                ret = new Castle(g, x, y);
+                ret = new Background(g, "nonInteractive\\castle", x, y);
                 break;
             case "CLOUD_1":
-                ret = new Cloud1(g, x, y);
+                ret = new Background(g, "nonInteractive\\cloud_1", x, y);
                 break;
             case "CLOUD_2":
-                ret = new Cloud2(g, x, y);
+                ret = new Background(g, "nonInteractive\\cloud_2", x, y);
                 break;
             case "CLOUD_3":
-                ret = new Cloud3(g, x, y);
+                ret = new Background(g, "nonInteractive\\cloud_3", x, y);
                 break;
             case "HILL_1":
-                ret = new Hill1(g, x, y);
+                ret = new Background(g, "nonInteractive\\hill_1", x, y);
                 break;
             case "HILL_2":
-                ret = new Hill2(g, x, y);
+                ret = new Background(g, "nonInteractive\\hill_2", x, y);
                 break;
             case "PIPE_1":
-                ret = new Pipe1(g, x, y);
+                ret = new Background(g, "interactive\\inert\\pipe_1", x, y);
                 break;
             case "PIPE_2":
-                ret = new Pipe2(g, x, y);
+                ret = new Background(g, "interactive\\inert\\pipe_2", x, y);
                 break;
             case "PIPE_3":
-                ret = new Pipe3(g, x, y);
+                ret = new Background(g, "interactive\\inert\\pipe_3", x, y);
                 break;
             default:
                 ret = null;

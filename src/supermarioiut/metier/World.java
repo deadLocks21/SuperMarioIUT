@@ -142,47 +142,11 @@ public class World {
                         BoxGameItem object = null;
 
                         switch (s) {
-                            case "BUSH_1":
-                                object = new Bush1(game, x, y);
-                                break;
-                            case "BUSH_2":
-                                object = new Bush2(game, x, y);
-                                break;
-                            case "BUSH_3":
-                                object = new Bush3(game, x, y);
-                                break;
-                            case "CASTLE":
-                                object = new Castle(game, x, y);
-                                break;
-                            case "CLOUD_1":
-                                object = new Cloud1(game, x, y);
-                                break;
-                            case "CLOUD_2":
-                                object = new Cloud2(game, x, y);
-                                break;
-                            case "CLOUD_3":
-                                object = new Cloud3(game, x, y);
-                                break;
                             case "FLOOR":
                                 object = new Floor(game, x, y);
                                 break;
-                            case "HILL_1":
-                                object = new Hill1(game, x, y);
-                                break;
-                            case "HILL_2":
-                                object = new Hill2(game, x, y);
-                                break;
                             case "LUCKY_BOX":
                                 object = new LuckyBox(game, x, y);
-                                break;
-                            case "PIPE_1":
-                                object = new Pipe1(game, x, y);
-                                break;
-                            case "PIPE_2":
-                                object = new Pipe2(game, x, y);
-                                break;
-                            case "PIPE_3":
-                                object = new Pipe3(game, x, y);
                                 break;
                             case "SOLID_WALL":
                                 object = new SolidWall(game, x, y);
@@ -190,6 +154,8 @@ public class World {
                             case "WALL":
                                 object = new Wall(game, x, y);
                                 break;
+                            default:
+                                object = BackgroundFactory.create(game, x, y, s);
                         }
 
                         if (object != null)

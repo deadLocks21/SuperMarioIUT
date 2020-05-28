@@ -6,7 +6,7 @@ import supermarioiut.metier.intheworld.ScrollWorld;
 /**
  * Représente un décor du jeu.
  */
-public abstract class Background extends ScrollWorld {
+public class Background extends ScrollWorld {
     /**
      * Constructeur d'un bloc mouvant de notre monde.
      *  @param g     Jeu dans lequel on se trouve.
@@ -16,5 +16,10 @@ public abstract class Background extends ScrollWorld {
      */
     public Background(Game g, String nom, int x, int y) {
         super(g, nom, x, y);
+    }
+
+    @Override
+    public String getItemType() {
+        return "BACKGROUND";
     }
 }

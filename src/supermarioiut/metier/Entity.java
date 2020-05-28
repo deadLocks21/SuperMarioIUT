@@ -37,7 +37,6 @@ public abstract class Entity extends BoxGameItem {
     }
 
     public void refreshPosition(){
-        System.out.println("Vy " + Vy);
         moveXY(Vx, Vy);
     }
 

@@ -11,7 +11,8 @@ public class Player extends Entity implements KeyListener {
     private boolean jump;
     // private boolean jumpWithKey;
     private boolean fall;
-    private boolean holdKey;
+    private boolean rightToJump;
+    private boolean holdUpKey;
     private int pressedKey;
     private int startHeight;
     private int MAX_HEIGHT = 150;
@@ -23,10 +24,22 @@ public class Player extends Entity implements KeyListener {
 
         jump = false;
         // jumpWithKey = false;
+        rightToJump = false;
         fall = true;
-        holdKey = false;
+        holdUpKey = false;
         pressedKey = 0;
         startHeight = 0;
+    }
+
+
+    public void goToFall(){
+        super.Vy = 0;
+        super.gravity = true;
+        super.t = 0;
+        super.v0 = -10;
+        jump = false;
+        fall = true;
+        rightToJump = false;
     }
 
 
@@ -37,7 +50,13 @@ public class Player extends Entity implements KeyListener {
 
     @Override
     public void evolve(long l){
-        if(pressedKey == KeyEvent.VK_UP || jump)
+        int actualHeight = this.getTop();
+
+        // Permet de stopper le monté si je suis à la hauteur max et que je saute ou appyue toujours.
+        if((pressedKey == KeyEvent.VK_UP) && jump && startHeight - actualHeight >= MAX_HEIGHT && !fall)
+            goToFall();
+
+        if((pressedKey == KeyEvent.VK_UP) && jump && startHeight - actualHeight < MAX_HEIGHT && !fall)
             super.gravity = false;
 
         if(jump || fall)
@@ -52,6 +71,9 @@ public class Player extends Entity implements KeyListener {
             fall = false;
             jump = false;
             this.changeSprite("interactive\\animated\\controlable\\mario_1\\static");
+
+            if(pressedKey != KeyEvent.VK_UP)
+                rightToJump = true;
         }
 
         super.collideEffect(gameItem);
@@ -65,15 +87,18 @@ public class Player extends Entity implements KeyListener {
     @Override
     public void keyPressed(KeyEvent keyEvent) {
         pressedKey = keyEvent.getKeyCode();
-        holdKey = keyEvent.getKeyCode() == pressedKey;
 
-        if(keyEvent.getKeyCode() == KeyEvent.VK_UP && !jump && !fall) {
-            super.Vy = -8;
+        // Permet de lancer le saut
+        if(pressedKey == KeyEvent.VK_UP && !jump && !fall && rightToJump) {
+            super.Vy = -10;
             super.gravity = false;
-            jump = false;
-            fall = true;
+            jump = true;
+            fall = false;
             startHeight = this.getTop();
+            rightToJump = false;
         }
+
+        // if(pressedKey == KeyEvent.VK_UP && fall)
 
         if(keyEvent.getKeyCode() == KeyEvent.VK_LEFT)
             super.Vx = -4;
@@ -86,12 +111,12 @@ public class Player extends Entity implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent keyEvent) {
-        if(keyEvent.getKeyCode() == KeyEvent.VK_UP) {
-            super.Vy = 0;
-            super.gravity = true;
-            super.t = 0;
-            super.v0 = -10;
+        if(keyEvent.getKeyCode() == KeyEvent.VK_UP && jump) {
+            goToFall();
         }
+
+        if(keyEvent.getKeyCode() == KeyEvent.VK_UP && !jump && !fall)
+            rightToJump = true;
 
         if(keyEvent.getKeyCode() == KeyEvent.VK_LEFT)
             super.Vx = 0;

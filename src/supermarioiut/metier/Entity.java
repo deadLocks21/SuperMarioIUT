@@ -24,6 +24,7 @@ public abstract class Entity extends BoxGameItem {
     // Variables pour la gravité.
     int t;
     int v0;
+    boolean gravity;
 
     // Variables pour la vitesse de déplacement.
     private float Vx;
@@ -38,12 +39,18 @@ public abstract class Entity extends BoxGameItem {
         Vx = 0;
         Vy = 0;
 
+        gravity = true;
+        t = 0;
+        v0 = 0;
+
         World world = World.getInstance();
         theoricWorld = world.getTheoricWorld();
     }
 
 
     protected abstract void speedGestion();
+
+    protected abstract void skinGestion();
 
 
     public float getVx() {
@@ -89,29 +96,23 @@ public abstract class Entity extends BoxGameItem {
     }
 
     private void gravity(){
-        float v = -G * t;
+        float v = -G * t + v0;
 
-        moveXY(0, 1);
-        whereIAm();
-
-        if(!collideBottom()){
+        if(gravity){
             if(v > MAX_SPEED)
                 Vy = MAX_SPEED;
             else
                 Vy = v;
 
             t++;
-        } else {
+        } /*else {
             Vy = 0;
             v0 = 0;
             t = 0;
-        }
-
-        moveXY(0, -1);
-        whereIAm();
+        }*/
     }
 
-    private void whereIAm(){
+    protected void whereIAm(){
         int x = getLeft();
         int y = getTop();
 
@@ -185,6 +186,20 @@ public abstract class Entity extends BoxGameItem {
         return res;
     }
 
+    protected boolean blockBottom(){
+        boolean res;
+
+        moveXY(0, 1);
+        whereIAm();
+
+        res = collideBottom();
+
+        moveXY(0, -1);
+        whereIAm();
+
+        return res;
+    }
+
     private void collide(){
         System.out.println("Vx " + Vx + "    Vy " + Vy + "    position " + getPosition().getY());
 
@@ -242,11 +257,10 @@ public abstract class Entity extends BoxGameItem {
 
     @Override
     public void evolve(long l) {
-        gravity();
-
         speedGestion();
+        gravity();
         collide();
-
-        // refreshPosition();
+        gravity = !blockBottom();
+        skinGestion();
     }
 }

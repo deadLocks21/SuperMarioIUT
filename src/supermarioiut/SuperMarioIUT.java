@@ -31,7 +31,7 @@ public class SuperMarioIUT extends iut.Game {
 
         myWorld.display();
 
-        addItem(new Master2(this, "interactive\\inert\\solidWall", 0, 0));
+        addItem(new Master2(this, "mario_1", 0, 0));
 
 
 //         addItem(new SolidWall(this, 0, 12*64));

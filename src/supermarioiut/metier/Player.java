@@ -107,6 +107,7 @@ public class Player extends EntityOld implements KeyListener {
             if(pressedKey != KeyEvent.VK_UP)
                 rightToJump = true;
 
+            // Gestion de la collision avec e bord gauche du monde.
             if(super.collideLeft) {
                 super.Vx = 0;
                 System.out.println(gameItem.getRight()-this.getLeft());

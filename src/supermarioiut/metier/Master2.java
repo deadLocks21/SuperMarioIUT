@@ -5,23 +5,40 @@ import iut.Game;
 import iut.GameItem;
 import supermarioiut.metier.intheworld.ScrollWorld;
 
+import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-// Vérifier quand je suis collé à un bloc si je peux aller dessous + appliquer la gravité en fonction.
+
 public class Master2 extends Entity implements KeyListener {
+    //**** Constante ****\\
+    private int MAX_HEIGHT_JUMP = 150;
+
     //**** Variables ****\\
     private boolean pressedLeft;
     private boolean pressedTop;
     private boolean pressedRight;
     private boolean pressedBottom;
 
+    // Jump var
+    private boolean jump;
+    private boolean fall;
+    private boolean rightToJump;
+    private int startHeightJump;
+
+    private String skin;
+    private String state;
+
 
     //**** Constructeur ****\\
-    public Master2(Game g, String nom, int x, int y) {
-        super(g, nom, x, y);
+    public Master2(Game g, String state, int x, int y) {
+        super(g, "interactive\\animated\\controlable\\" + state + "\\static", x, y);
+
+        skin = "static";
+        this.state = state;
 
         initPressed();
+        initJumpVar();
     }
 
     //**** Méthodes ****\\
@@ -30,6 +47,13 @@ public class Master2 extends Entity implements KeyListener {
         pressedTop = false;
         pressedRight = false;
         pressedBottom = false;
+    }
+
+    private void initJumpVar(){
+        jump = false;
+        fall = false;
+        rightToJump = false;
+        startHeightJump = 0;
     }
 
     protected void speedGestion(){
@@ -54,20 +78,47 @@ public class Master2 extends Entity implements KeyListener {
             incrementVx(I_SPEED);
 
 
-//        // TOP
-//        if(Vy < 0 && !pressedTop)
-//            Vy += PIXEL;
-//
-//        if(Vy > -MAX_SPEED && pressedTop)
-//            Vy -= I_SPEED;
-//
-//
-//        // BOTTOM
-//        if(Vy > 0 && !pressedBottom)
-//            Vy -= PIXEL;
-//
-//        if(Vy < MAX_SPEED && pressedBottom)
-//            Vy += I_SPEED;
+        // TOP & BOTTOM
+        int actualHeight = this.getTop();
+
+        // System.out.println("pressedTop " + pressedTop + "    rightToJump " + rightToJump + "    jump " + jump + "    Vy " + super.getVy());
+
+        // Vérifie si le joueur veut et peut sauter
+        if(pressedTop && rightToJump) {
+            jump = true;
+            startHeightJump = getTop();
+        }
+
+        if (jump) {
+            System.out.println("Jump");
+
+            super.gravity = false;
+            setVy(-10);
+            skin = "jump";
+        }
+
+        if (jump && (!pressedTop || startHeightJump - actualHeight >= MAX_HEIGHT_JUMP)){
+            System.out.println("Fall");
+
+            jump = false;
+            fall = true;
+            v0 = -10;
+            t = 0;
+        }
+
+        rightToJump = !pressedTop && blockBottom();
+
+        if (fall && blockBottom()){
+            jump = false;
+            fall = false;
+            v0 = 0;
+            skin = "static";
+        }
+    }
+
+    @Override
+    protected void skinGestion() {
+        changeSprite("interactive\\animated\\controlable\\" + state + "\\" + skin);
     }
 
 

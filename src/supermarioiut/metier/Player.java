@@ -9,7 +9,7 @@ import java.awt.event.KeyListener;
 /**
  * Stocke et fait marcher un Mario.
  */
-public class Player extends Entity implements KeyListener {
+public class Player extends EntityOld implements KeyListener {
     /**
      * Hauteur maximale pour le saut libre.
      */

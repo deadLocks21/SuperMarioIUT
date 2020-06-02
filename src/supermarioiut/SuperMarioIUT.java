@@ -27,6 +27,7 @@ public class SuperMarioIUT extends iut.Game {
     protected void createItems() {
         World myWorld = World.getInstance();
         myWorld.init(this, "1-1");
+        System.out.println(myWorld);
 
         myWorld.display();
 

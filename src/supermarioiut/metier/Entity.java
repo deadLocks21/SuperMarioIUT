@@ -2,278 +2,251 @@ package supermarioiut.metier;
 
 import iut.BoxGameItem;
 import iut.Game;
-import iut.GameItem;
+import supermarioiut.metier.intheworld.ScrollWorld;
 
 /**
- * Stocke un objet mouvant et soumis à la gravité.
+ * Class prenant en compte les collision ainsi que la gravité.
  */
 public abstract class Entity extends BoxGameItem {
-    /**
-     * Constante gravitationnelle du jeu.
-     */
-    float G = (float)-40/100;  // Constante G dans MarigameItem.
-    /**
-     * Activation ou non de la gravité le tour d'avant.
-     */
-    boolean oldGravity;
-    /**
-     * Activation ou non de la gravité.
-     */
-    boolean gravity;
-    /**
-     * Instant t qui s'incrémente.
-     */
+    // Constantes vitesse du personnage.
+    int MAX_SPEED = 12;
+    int I_SPEED = 4;
+    int PIXEL = 4;
+    // Constante pour la gravité.
+    float G = (float)-40/100;
+
+    // Coo du perso
+    int cooTLx;
+    int cooTLy;
+    int cooBRx;
+    int cooBRy;
+
+    // Variables pour la gravité.
     int t;
-    /**
-     * Vitesse initiale.
-     */
     int v0;
-    /**
-     * Vitesse sur l'axe x.
-     */
-    double Vx;
-    /**
-     * Vitesse sur l'axe y.
-     */
-    double Vy;
-    /**
-     * Collide avec le sol.
-     */
-    boolean collideBottom;
-    /**
-     * Collide avec la gauche.
-     */
-    boolean collideLeft;
-    /**
-     * Collide avec la droite.
-     */
-    boolean collideRight;
-    /**
-     * Collide avec le haut.
-     */
-    boolean collideTop;
+
+    // Variables pour la vitesse de déplacement.
+    private float Vx;
+    private float Vy;
+
+    String[][] theoricWorld;
 
 
-    /**
-     * Constructeur de la classe Entity.
-     *
-     *
-     * @param g   Jeu dans lequel on se trouve.
-     * @param nom Nom de notre entité.
-     * @param x     Variable x.
-     * @param y     Variable y.
-     */
     public Entity(Game g, String nom, int x, int y) {
         super(g, nom, x, y);
-        gravity = true;
-        oldGravity = false;
-        t = 0;
-        v0 = 0;
+
         Vx = 0;
         Vy = 0;
+
+        World world = World.getInstance();
+        theoricWorld = world.getTheoricWorld();
     }
 
 
-    /**
-     * Applique la gravité.
-     */
-    public void gravity(){
-        if (gravity){
-            if (!oldGravity){
-                t = 1;
-                oldGravity = true;
-            }
-            Vy = -G * t + v0;
-            t++;
+    protected abstract void speedGestion();
+
+
+    public float getVx() {
+        return Vx;
+    }
+
+    public void setVx(float vx) {
+        Vx = vx;
+    }
+
+    public void incrementVx(float vx) {
+        Vx += vx;
+    }
+
+    public void decrementVx(float vx) {
+        Vx -= vx;
+    }
+
+    public float getVy() {
+        return Vy;
+    }
+
+    public void setVy(float vy) {
+        Vy = vy;
+    }
+
+    public void incrementVy(float vy) {
+        Vy += vy;
+    }
+
+    public void decrementVy(float vy) {
+        Vy -= vy;
+    }
+
+
+    private void refreshPosition(){
+        if(this.getRight() > this.getGame().getWidth()/2 && Vx > 0){  // Fait avancer le monde.
+            ScrollWorld.moveTheWorld(Vx);
+            moveXY(0, Vy);
+        } else {
+            moveXY(Vx, Vy);
         }
     }
 
-    /**
-     * Actualise la position de l'entité en fonction des vitesses.
-     */
-    public void refreshPosition(){
-        moveXY(Vx, Vy);
+    private void gravity(){
+        float v = -G * t;
+
+        moveXY(0, 1);
+        whereIAm();
+
+        if(!collideBottom()){
+            if(v > MAX_SPEED)
+                Vy = MAX_SPEED;
+            else
+                Vy = v;
+
+            t++;
+        } else {
+            Vy = 0;
+            v0 = 0;
+            t = 0;
+        }
+
+        moveXY(0, -1);
+        whereIAm();
     }
 
-    /**
-     * Initialise les variables de collisions.
-     */
-    private void initCollide(){
-        collideBottom = true;
-        collideLeft = false;
-        collideRight = false;
-        collideTop = false;
+    private void whereIAm(){
+        int x = getLeft();
+        int y = getTop();
+
+        int w = getWidth();
+        int h = getHeight();
+
+
+        cooTLx = (int) ((x + ScrollWorld.getProgressPoint()) / 64);
+        cooTLy = y / 64;
+
+        cooBRx = (int) (((x + w - 1 + ScrollWorld.getProgressPoint()) / 64) + 1);
+        cooBRy = ((y + h - 1) / 64) + 1;
+
+        // System.out.println("cooTLx " + cooTLx + "    cooTLy " + cooTLy + "    cooBRx " + cooBRx + "    cooBRy " + cooBRy);
+    }
+
+    // Ces fonctions permettent de vérifier si je suis à l'intérieur d'un bloc.
+    private boolean collideLeft(){
+        boolean res = false;
+
+        try {
+            for(int i = cooTLy; i < cooBRy; i ++)
+                if (theoricWorld[i][cooTLx] != null)
+                    res = true;
+        } catch (ArrayIndexOutOfBoundsException err){
+            // Nothing, ca veut dire qu'on est null part.
+        }
+
+        return res;
+    }
+
+    private boolean collideTop(){
+        boolean res = false;
+
+        try {
+            for(int i = cooTLx; i < cooBRx; i ++)
+                if (theoricWorld[cooTLy][i] != null)
+                    res = true;
+        } catch (ArrayIndexOutOfBoundsException err){
+            // Nothing, ca veut dire qu'on est null part.
+        }
+
+        return res;
+    }
+
+    private boolean collideRight(){
+        boolean res = false;
+
+        try {
+            for(int i = cooTLy; i < cooBRy; i ++)
+                if(theoricWorld[i][cooBRx - 1] != null)
+                    res = true;
+        } catch (ArrayIndexOutOfBoundsException err){
+            // Nothing, ca veut dire qu'on est null part.
+        }
+
+        return res;
+    }
+
+    private boolean collideBottom(){
+        boolean res = false;
+
+        try {
+            for(int i = cooTLx; i < cooBRx; i ++)
+                if (theoricWorld[cooBRy - 1][i] != null)
+                    res = true;
+        } catch (ArrayIndexOutOfBoundsException err){
+            // Nothing, ca veut dire qu'on est null part.
+        }
+
+        return res;
+    }
+
+    private void collide(){
+        System.out.println("Vx " + Vx + "    Vy " + Vy + "    position " + getPosition().getY());
+
+
+        // Déplacement du sprite
+        refreshPosition();
+
+        // Je regarde ou il est
+        whereIAm();
+
+
+        // BOTTOM
+        if(Vy > 0 && collideBottom()) {
+            moveXY(0, ((cooBRy - 1) * 64) - (getPosition().getY() + getHeight()));
+            Vy = 0;
+            t = 0;
+        }
+
+        // LEFT
+        if(Vx < 0 && collideLeft()) {
+            moveXY((((cooTLx + 1) * 64) - getPosition().getX()) - ScrollWorld.getProgressPoint(), 0);
+            Vx = 0;
+        }
+
+        // RIGHT
+        if(Vx > 0 && collideRight()) {
+            moveXY((((cooBRx - 1) * 64) - (getPosition().getX() + getWidth())) - ScrollWorld.getProgressPoint(), 0);
+            Vx = 0;
+        }
+
+        // TOP
+        if(Vy < 0 && collideTop()) {
+            moveXY(0, ((cooTLy + 1) * 64) - getPosition().getY());
+            Vy = 0;
+        }
+
+
+        /*// BOTTOM/RIGHT
+        if(Vy > 0 && Vx > 0)
+            System.out.println("BOTTOM/RIGHT");
+
+        // BOTTOM/LEFT
+        if(Vy > 0 && Vx > 0)
+            System.out.println("BOTTOM/LEFT");
+
+        // TOP/RIGHT
+        if(Vy > 0 && Vx > 0)
+            System.out.println("TOP/RIGHT");
+
+        // TOP/LEFT
+        if(Vy > 0 && Vx > 0)
+            System.out.println("TOP/LEFT");*/
     }
 
 
     @Override
     public void evolve(long l) {
-        initCollide();
         gravity();
-        refreshPosition();
 
+        speedGestion();
+        collide();
 
-        gravity = true;
-    }
-
-    @Override
-    public void collideEffect(GameItem gameItem) {
-//        boolean left = this.getLeft() <= gameItem.getRight() && this.getLeft() > gameItem.getRight() + Vx;
-//        boolean right = this.getRight() >= gameItem.getLeft() && this.getRight() < gameItem.getLeft() + Vx;
-//        boolean top = this.getTop() <= gameItem.getBottom() && this.getTop() > gameItem.getBottom() + Vy;
-//        boolean bottom = this.getBottom() >= gameItem.getTop() && this.getBottom() < gameItem.getTop() + Vy;
-        boolean touchsTheBlocks = gameItem.getItemType().equals("FLOOR") || gameItem.getItemType().equals("PIPE") || gameItem.getItemType().equals("LUCKY_BOX") || gameItem.getItemType().equals("WALL") || gameItem.getItemType().equals("SOLID_WALL");
-//
-//        // Left Collide
-//        if(left && !top && !bottom) {
-//            // System.out.println("Left Touch " + gameItem.getItemType());
-//            collideLeft = true;
-//            this.moveXY(gameItem.getRight() - this.getLeft(), 0);
-//        }
-//
-//        // Right Collide
-//        if(right && !top && !bottom) {
-//            // System.out.println("Right Touch " + gameItem.getItemType());
-//            collideRight = true;
-//            this.moveXY(gameItem.getLeft() - this.getRight(), 0);
-//        }
-//
-//        // Top Collide
-//        if(top && !right && !left) {
-//            // System.out.println("Top Touch " + gameItem.getItemType());
-//            collideTop = true;
-//            this.moveXY(0, gameItem.getBottom() - this.getTop());
-//        }
-//
-//        // Bottom Collide
-//        if(bottom && !right && !left) {
-//            // System.out.println("Bottom Touch " + gameItem.getItemType());
-//            collideBottom = true;
-//            this.moveXY(0, gameItem.getTop() - this.getBottom());
-//        }
-
-//        if(Vx != 0 && Vy == 0){
-//            if(Vx > 0)
-//                collideLeft = true;
-//
-//            if(Vx < 0)
-//                collideRight = true;
-//        }
-//
-//        if(Vx == 0 && Vy != 0){
-//            if(Vy > 0)
-//                collideBottom = true;
-//
-//            if(Vy < 0)
-//                collideTop = true;
-//        }
-
-
-
-
-
-        if(touchsTheBlocks){
-            gravity = false;
-            oldGravity = false;
-            t = 0;
-            v0 = 0;
-            Vy = 0;
-
-            // Si LEFT/RIGHT
-            if(Vx != 0 && Vy == 0){
-                if(Vx > 0 && gameItem.getBottom() != this.getTop() && this.getBottom() != gameItem.getTop()) {
-                    collideRight = true;
-                    System.out.println("RIGHT");
-                    moveXY(gameItem.getLeft() - this.getRight(), 0);
-                }
-
-                if(Vx < 0 && gameItem.getBottom() != this.getTop() && this.getBottom() != gameItem.getTop()) {
-                    collideLeft = true;
-                    System.out.println("LEFT");
-                    moveXY(gameItem.getRight() - this.getLeft(), 0);
-                }
-            }
-
-            // Si TOP/BOTTOM
-            if(Vx == 0 && Vy != 0){
-                if(Vy > 0 && gameItem.getLeft() != this.getRight() && gameItem.getRight() != this.getLeft()) {
-                    collideBottom = true;
-                    System.out.println("BOTTOM");
-                    moveXY(0, gameItem.getTop() - this.getBottom());
-                }
-
-                if(Vy < 0 && gameItem.getLeft() != this.getRight() && gameItem.getRight() != this.getLeft()) {
-                    collideTop = true;
-                    System.out.println("TOP");
-                    moveXY(0, gameItem.getBottom() - this.getTop());
-                }
-            }
-
-            // Diagonale BOTTOM/RIGHT
-            if(Vx > 0 && Vy > 0){
-                int dV = getBottom() - gameItem.getTop();
-                int dH = getRight() - gameItem.getLeft();
-
-                if(dV >= dH) {
-                    collideRight = true;
-                    System.out.println("RIGHT");
-                    moveXY(gameItem.getLeft() - this.getRight(), 0);
-                } else {
-                    collideBottom = true;
-                    System.out.println("BOTTOM");
-                    moveXY(0, gameItem.getTop() - this.getBottom());
-                }
-            }
-
-            // Diagonale BOTTOM/LEFT
-            if(Vx < 0 && Vy > 0){
-                int dV = getBottom() - gameItem.getTop();
-                int dH = gameItem.getRight() - getLeft();
-
-                if(dV > dH) {
-                    collideLeft = true;
-                    System.out.println("LEFT");
-                    moveXY(gameItem.getRight() - this.getLeft(), 0);
-                } else {
-                    collideBottom = true;
-                    System.out.println("BOTTOM");
-                    moveXY(0, gameItem.getTop() - this.getBottom());
-                }
-            }
-
-            // Diagonale TOP/LEFT
-            if(Vx < 0 && Vy < 0){
-                int dV = gameItem.getBottom() - getTop();
-                int dH = gameItem.getRight() - getLeft();
-
-                if(dV >= dH) {
-                    collideLeft = true;
-                    System.out.println("LEFT");
-                    moveXY(gameItem.getRight() - this.getLeft(), 0);
-                } else {
-                    collideTop = true;
-                    System.out.println("TOP");
-                    moveXY(0, gameItem.getBottom() - this.getTop());
-                }
-            }
-
-            // Diagonale TOP/RIGHT
-            if(Vx > 0 && Vy < 0){
-                int dV = gameItem.getBottom() - getTop();
-                int dH = getRight() - gameItem.getLeft();
-
-                if(dV >= dH) {
-                    collideRight = true;
-                    System.out.println("RIGHT");
-                    moveXY(gameItem.getLeft() - this.getRight(), 0);
-                } else {
-                    collideTop = true;
-                    System.out.println("TOP");
-                    moveXY(0, gameItem.getBottom() - this.getTop());
-                }
-            }
-
-            // moveXY(0, gameItem.getTop()-this.getBottom());
-        }
+        // refreshPosition();
     }
 }

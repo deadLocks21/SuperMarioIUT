@@ -49,15 +49,6 @@ public class BackgroundFactory {
             case "HILL_2":
                 ret = new Background(g, "nonInteractive\\hill_2", x, y);
                 break;
-            case "PIPE_1":
-                ret = new Background(g, "interactive\\inert\\pipe_1", x, y);
-                break;
-            case "PIPE_2":
-                ret = new Background(g, "interactive\\inert\\pipe_2", x, y);
-                break;
-            case "PIPE_3":
-                ret = new Background(g, "interactive\\inert\\pipe_3", x, y);
-                break;
             default:
                 ret = null;
         }

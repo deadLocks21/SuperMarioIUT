@@ -1,16 +1,10 @@
 package supermarioiut.metier;
 
-import iut.BoxGameItem;
 import iut.Game;
-import iut.BoxGameItem;
 import iut.GameItem;
 import supermarioiut.metier.intheworld.backgrounds.*;
-import supermarioiut.metier.intheworld.blocks.Floor;
-import supermarioiut.metier.intheworld.blocks.LuckyBox;
-import supermarioiut.metier.intheworld.blocks.SolidWall;
-import supermarioiut.metier.intheworld.blocks.Wall;
+import supermarioiut.metier.intheworld.blocks.*;
 
-import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -121,8 +115,6 @@ public class World {
             theoricWorld = new String[h][w];
 
             getObjectList();
-
-            displayTheoricWorld();
         }
     }
 
@@ -143,34 +135,6 @@ public class World {
         for (GameItem item : listeDesObjets) {
             game.addItem(item);
         }
-    }
-
-    public void displayTheoricWorld(){
-        int w = (int) data.get("w");
-        int h = (int) data.get("h");
-        String ret = "";
-
-        System.out.println("\nTheoricWorld :");
-
-        for(int y = 0; y < h; y ++) {
-            for(int x = 0; x < w; x ++) {
-                // Un SWITCH/CASE fait planter le jeu ...
-                if ("FLOOR".equals(theoricWorld[y][x])) {
-                    ret += "F";
-                } else if ("LUCKY_BOX".equals(theoricWorld[y][x])) {
-                    ret += "L";
-                } else if ("SOLID_WALL".equals(theoricWorld[y][x])) {
-                    ret += "S";
-                } else if ("WALL".equals(theoricWorld[y][x])) {
-                    ret += "W";
-                } else {
-                    ret += " ";
-                }
-            }
-            ret += "\n";
-        }
-
-        System.out.println(ret);
     }
 
     /**
@@ -209,15 +173,44 @@ public class World {
                             case "WALL":
                                 object = new Wall(game, x, y);
                                 break;
+                            case "PIPE_2":
+                                 object = new Pipe(game, x, y, 2);
+                                 break;
+                            case "PIPE_3":
+                                object = new Pipe(game, x, y, 3);
+                                break;
+                            case "PIPE_4":
+                                object = new Pipe(game, x, y, 4);
+                                break;
                             default:
                                 object = BackgroundFactory.create(game, x, y, s);
                         }
 
-                        if (object != null)
+                        if (object != null) {
                             listeDesObjets.add(object);
 
-                        if(object != null && object.getItemType() != "BACKGROUND")
-                            theoricWorld[y][x] = object.getItemType();
+                            if(!object.getItemType().equals("BACKGROUND")) {
+                                theoricWorld[y][x] = object.getItemType();
+
+                                if(object.getItemType().contains("PIPE")){
+                                    theoricWorld[y][x] = object.getItemType();
+
+                                    if (object.getItemType().equals("PIPE_2"))
+                                        theoricWorld[y + 1][x] = object.getItemType();
+
+                                    if (object.getItemType().equals("PIPE_3")) {
+                                        theoricWorld[y + 1][x] = object.getItemType();
+                                        theoricWorld[y + 2][x] = object.getItemType();
+                                    }
+
+                                    if (object.getItemType().equals("PIPE_4")) {
+                                        theoricWorld[y + 1][x] = object.getItemType();
+                                        theoricWorld[y + 2][x] = object.getItemType();
+                                        theoricWorld[y + 3][x] = object.getItemType();
+                                    }
+                                }
+                            }
+                        }
                     }
                     buff.close();
                 } catch (Exception e) {
@@ -255,6 +248,46 @@ public class World {
 
         data.put("w", Integer.parseInt(wh[0]));
         data.put("h", Integer.parseInt(wh[1]));
+    }
+
+
+     @Override
+    public String toString(){
+         int w = (int) data.get("w");
+         int h = (int) data.get("h");
+         String ret = "";
+
+         System.out.println("\nTheoricWorld :");
+
+         for(int y = 0; y < h; y ++) {
+             for (int x = 0; x < w; x++) {
+                 // Un SWITCH/CASE fait planter le jeu ...
+                 try{
+                     if ("FLOOR".equals(theoricWorld[y][x])) {
+                         ret += "F";
+                     } else if ("LUCKY_BOX".equals(theoricWorld[y][x])) {
+                         ret += "L";
+                     } else if ("SOLID_WALL".equals(theoricWorld[y][x])) {
+                         ret += "S";
+                     } else if ("WALL".equals(theoricWorld[y][x])) {
+                         ret += "W";
+                     } else if ("PIPE_2".equals(theoricWorld[y][x])) {
+                         ret += "P";
+                     }  else if ("PIPE_3".equals(theoricWorld[y][x])) {
+                         ret += "P";
+                     }  else if ("PIPE_4".equals(theoricWorld[y][x])) {
+                         ret += "P";
+                     }  else {
+                         ret += " ";
+                     }
+                 } catch (IndexOutOfBoundsException err){
+                     // Quand je demande un mauvais index, ce qui arrive de manière courante
+                 }
+             }
+             ret += "\n";
+         }
+
+         return ret;
     }
 }
 

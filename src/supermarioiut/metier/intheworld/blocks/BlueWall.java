@@ -1,6 +1,7 @@
 package supermarioiut.metier.intheworld.blocks;
 
 import iut.Game;
+import iut.GameItem;
 import supermarioiut.metier.World;
 
 /**
@@ -17,7 +18,6 @@ public class BlueWall extends Block {
     public BlueWall(Game g, int x, int y) {
         super(g, "interactive\\inert\\blueWall", x, y);
     }
-
 
     @Override
     public String getItemType() {

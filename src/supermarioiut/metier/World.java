@@ -3,6 +3,7 @@ package supermarioiut.metier;
 import iut.BoxGameItem;
 import iut.Game;
 import iut.BoxGameItem;
+import iut.GameItem;
 import supermarioiut.metier.intheworld.backgrounds.*;
 import supermarioiut.metier.intheworld.blocks.Floor;
 import supermarioiut.metier.intheworld.blocks.LuckyBox;
@@ -12,6 +13,7 @@ import supermarioiut.metier.intheworld.blocks.Wall;
 import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Classe unique permettant de gérer l'affichage d'un monde.
@@ -30,13 +32,21 @@ public class World {
      */
     private String worldName;
     /**
+     * Stocke les données du monde.
+     */
+    private HashMap<String, Object> data;
+    /**
      * Nombre de pixel pour un bloc.
      */
-    private final int PIXEL_FOR_A_BLOCK = 64;
+    private int PIXEL_FOR_A_BLOCK = 64;
     /**
      * Liste des items du jeu.
      */
-    private ArrayList<BoxGameItem> listeDesObjets;
+    private ArrayList<GameItem> listeDesObjets;
+    /**
+     * Permet de stocker le monde de manière théorique et de gérer les collisions.
+     */
+    private String[][] theoricWorld;
 
 
     /**
@@ -46,6 +56,7 @@ public class World {
         setGame(null);
         setWorldName(null);
         listeDesObjets = new ArrayList<>();
+        data = new HashMap<>();
     }
 
 
@@ -60,6 +71,10 @@ public class World {
             instance = new World();
 
         return instance;
+    }
+
+    public String[][] getTheoricWorld(){
+        return theoricWorld;
     }
 
     /**
@@ -95,7 +110,19 @@ public class World {
             setGame(game);
             setWorldName(worldName);
 
+            getData();
+
+            String size = (String) data.get("size");
+            String[] wh = size.split("x");
+
+            int w = Integer.parseInt(wh[0]);
+            int h = Integer.parseInt(wh[1]);
+
+            theoricWorld = new String[h][w];
+
             getObjectList();
+
+            displayTheoricWorld();
         }
     }
 
@@ -103,7 +130,7 @@ public class World {
      * Permet de nettoyer l'affichage du jeu.
      */
     public void clear(){
-        for (BoxGameItem item : listeDesObjets)
+        for (GameItem item : listeDesObjets)
             game.remove(item);
 
         listeDesObjets.clear();
@@ -113,9 +140,37 @@ public class World {
      * Permet d'afficher le monde worldName.
      */
     public void display(){
-        for (BoxGameItem item : listeDesObjets) {
+        for (GameItem item : listeDesObjets) {
             game.addItem(item);
         }
+    }
+
+    public void displayTheoricWorld(){
+        int w = (int) data.get("w");
+        int h = (int) data.get("h");
+        String ret = "";
+
+        System.out.println("\nTheoricWorld :");
+
+        for(int y = 0; y < h; y ++) {
+            for(int x = 0; x < w; x ++) {
+                // Un SWITCH/CASE fait planter le jeu ...
+                if ("FLOOR".equals(theoricWorld[y][x])) {
+                    ret += "F";
+                } else if ("LUCKY_BOX".equals(theoricWorld[y][x])) {
+                    ret += "L";
+                } else if ("SOLID_WALL".equals(theoricWorld[y][x])) {
+                    ret += "S";
+                } else if ("WALL".equals(theoricWorld[y][x])) {
+                    ret += "W";
+                } else {
+                    ret += " ";
+                }
+            }
+            ret += "\n";
+        }
+
+        System.out.println(ret);
     }
 
     /**
@@ -136,10 +191,10 @@ public class World {
                     while ((ligne = buff.readLine()) != null) {
                         // TODO Ajouter les blocs et leurs spéc.
                         String[] infos = ligne.split(" ");  // On split les coo et les paramètres.
-                        int x = Integer.parseInt(infos[0]) * PIXEL_FOR_A_BLOCK;  // On récupère x
-                        int y = Integer.parseInt(infos[1]) * PIXEL_FOR_A_BLOCK;  // On récupère y
+                        int x = Integer.parseInt(infos[0]);  // On récupère x
+                        int y = Integer.parseInt(infos[1]);  // On récupère y
 
-                        BoxGameItem object = null;
+                        GameItem object = null;
 
                         switch (s) {
                             case "FLOOR":
@@ -160,6 +215,9 @@ public class World {
 
                         if (object != null)
                             listeDesObjets.add(object);
+
+                        if(object != null && object.getItemType() != "BACKGROUND")
+                            theoricWorld[y][x] = object.getItemType();
                     }
                     buff.close();
                 } catch (Exception e) {
@@ -171,23 +229,32 @@ public class World {
         }
     }
 
-    /*private void displayBackground(){
+    /**
+     * Permet de récupérer les datas du monde.
+     */
+    private void getData(){
         try {
             InputStream flux = new FileInputStream("res\\worlds\\" + worldName + "\\data");
             InputStreamReader lecture = new InputStreamReader(flux);
             BufferedReader buff = new BufferedReader(lecture);
+
             String ligne;
             while ((ligne = buff.readLine()) != null) {
-                String red = String.valueOf(ligne.charAt(19) + ligne.charAt(20) + ligne.charAt(21));
-                String green = String.valueOf(ligne.charAt(24) + ligne.charAt(25) + ligne.charAt(26));
-                String blue = String.valueOf(ligne.charAt(29) + ligne.charAt(30) + ligne.charAt(31));
-
-                backgroundColor(new Color(Integer.parseInt(red), Integer.parseInt(green), Integer.parseInt(blue)));
+                System.out.println(ligne);
+                String[] d = ligne.split(" : ");
+                data.put(d[0], d[1]);
             }
+
             buff.close();
         } catch (Exception e) {
             System.out.println(e.toString());
         }
-    }*/
+
+        String size = (String) data.get("size");
+        String[] wh = size.split("x");
+
+        data.put("w", Integer.parseInt(wh[0]));
+        data.put("h", Integer.parseInt(wh[1]));
+    }
 }
 

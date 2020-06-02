@@ -5,33 +5,63 @@ import iut.GameItem;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.security.Key;
 
+/**
+ * Stocke et fait marcher un Mario.
+ */
 public class Player extends Entity implements KeyListener {
-    private boolean jump;
-    // private boolean jumpWithKey;
-    private boolean fall;
-    private boolean rightToJump;
-    private boolean holdUpKey;
-    private int pressedKey;
-    private int startHeight;
+    /**
+     * Hauteur maximale pour le saut libre.
+     */
     private int MAX_HEIGHT = 150;
+    /**
+     * Savoir si le joueur est en train de sauter.
+     */
+    private boolean jump;
+    /**
+     * Savoir si le joueur est en train de redescendre.
+     */
+    private boolean fall;
+    /**
+     * Savoir si le joueur a le droit de sauter.
+     */
+    private boolean rightToJump;
+    /**
+     * Numéro de la touche.
+     */
+    private int pressedKey;
+    /**
+     * Hauteur de départ d'un saut.
+     */
+    private int startHeight;
+
+    private String state;
 
 
-
-    public Player(Game g, int x, int y) {
-        super(g, "interactive\\animated\\controlable\\mario_1\\static", x, y);
+    /**
+     * Constructeur de la classe Player.
+     *
+     *
+     * @param g     Jeu dans lequel on se trouve.
+     * @param state Etat du mario.
+     * @param x     Variable x.
+     * @param y     Variable y.
+     */
+    public Player(Game g, String state, int x, int y) {
+        super(g, "interactive\\animated\\controlable\\" + state + "\\static", x, y);
 
         jump = false;
-        // jumpWithKey = false;
         rightToJump = false;
         fall = true;
-        holdUpKey = false;
         pressedKey = 0;
         startHeight = 0;
+        this.state = state;
     }
 
 
+    /**
+     * Permet de lancer la redescente du joueur.
+     */
     public void goToFall(){
         super.Vy = 0;
         super.gravity = true;
@@ -60,23 +90,29 @@ public class Player extends Entity implements KeyListener {
             super.gravity = false;
 
         if(jump || fall)
-            this.changeSprite("interactive\\animated\\controlable\\mario_1\\jump");
+            this.changeSprite("interactive\\animated\\controlable\\" + state + "\\jump");
 
         super.evolve(l);
     }
 
     @Override
     public void collideEffect(GameItem gameItem){
-        if(gameItem.getItemType().equals("FLOOR") || gameItem.getItemType().equals("PIPE") || gameItem.getItemType().equals("LUCKY_BOX") || gameItem.getItemType().equals("WALL")) {
+        super.collideEffect(gameItem);
+
+        if(gameItem.getItemType().equals("FLOOR") || gameItem.getItemType().contains("PIPE") || gameItem.getItemType().equals("LUCKY_BOX") || gameItem.getItemType().equals("WALL") || gameItem.getItemType().equals("SOLID_WALL")) {
             fall = false;
             jump = false;
-            this.changeSprite("interactive\\animated\\controlable\\mario_1\\static");
+            this.changeSprite("interactive\\animated\\controlable\\" + state + "\\static");
 
             if(pressedKey != KeyEvent.VK_UP)
                 rightToJump = true;
-        }
 
-        super.collideEffect(gameItem);
+            if(super.collideLeft) {
+                super.Vx = 0;
+                System.out.println(gameItem.getRight()-this.getLeft());
+                moveXY(gameItem.getRight()-this.getLeft(), 0);
+            }
+        }
     }
 
     @Override
@@ -97,8 +133,6 @@ public class Player extends Entity implements KeyListener {
             startHeight = this.getTop();
             rightToJump = false;
         }
-
-        // if(pressedKey == KeyEvent.VK_UP && fall)
 
         if(keyEvent.getKeyCode() == KeyEvent.VK_LEFT)
             super.Vx = -4;

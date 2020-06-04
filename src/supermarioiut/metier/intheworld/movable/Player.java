@@ -1,9 +1,10 @@
-package supermarioiut.metier.movable;
+package supermarioiut.metier.intheworld.movable;
 
 import iut.Game;
 import iut.GameItem;
 import supermarioiut.metier.intheworld.ScrollWorld;
 
+import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -68,6 +69,11 @@ public class Player extends Entity implements KeyListener {
      */
     private String state;
 
+    /**
+     * Permet de savoir si le joueur à gagné ou non.
+     */
+    private boolean win;
+
 
     /**
      * Constructeur de la classe Player.
@@ -93,6 +99,19 @@ public class Player extends Entity implements KeyListener {
         fall = false;
         rightToJump = false;
         startHeightJump = 0;
+
+        win = false;
+    }
+
+
+    /**
+     * Assesseur de win.
+     *
+     *
+     * @return Valeur de win.
+     */
+    public boolean getWin(){
+        return win;
     }
 
 
@@ -173,7 +192,8 @@ public class Player extends Entity implements KeyListener {
 
     @Override
     public void collideEffect(GameItem gameItem) {
-
+        if(gameItem.getItemType().equals("FLAG_BAR"))
+            win = true;
     }
 
     @Override

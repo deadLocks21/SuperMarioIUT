@@ -46,6 +46,18 @@ public class BlockFactory {
             case "WALL":
                 ret = new Wall(g, x, y);
                 break;
+            case "FLAG_BAR":
+                ret = new FlagBar(g, x, y);
+                break;
+            case "PIPE_2":
+                ret = new Pipe(g, x, y, 2);
+                break;
+            case "PIPE_3":
+                ret = new Pipe(g, x, y, 3);
+                break;
+            case "PIPE_4":
+                ret = new Pipe(g, x, y, 4);
+                break;
             default:
                 ret = null;
         }

@@ -2,9 +2,8 @@ package supermarioiut.metier;
 
 import iut.Game;
 import iut.GameItem;
-import supermarioiut.metier.intheworld.backgrounds.*;
-import supermarioiut.metier.intheworld.blocks.*;
-import supermarioiut.metier.movable.enemy.LittleGoomba;
+import supermarioiut.metier.intheworld.InTheWorldFactory;
+import supermarioiut.metier.intheworld.movable.enemy.LittleGoomba;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -154,41 +153,11 @@ public class World {
                     BufferedReader buff = new BufferedReader(lecture);
                     String ligne;
                     while ((ligne = buff.readLine()) != null) {
-                        // TODO Ajouter les blocs et leurs spéc.
                         String[] infos = ligne.split(" ");  // On split les coo et les paramètres.
                         int x = Integer.parseInt(infos[0]);  // On récupère x
                         int y = Integer.parseInt(infos[1]);  // On récupère y
 
-                        GameItem object = null;
-
-                        switch (s) {
-                            case "FLOOR":
-                                object = new Floor(game, x, y);
-                                break;
-                            case "LUCKY_BOX":
-                                object = new LuckyBox(game, x, y);
-                                break;
-                            case "SOLID_WALL":
-                                object = new SolidWall(game, x, y);
-                                break;
-                            case "WALL":
-                                object = new Wall(game, x, y);
-                                break;
-                            case "PIPE_2":
-                                 object = new Pipe(game, x, y, 2);
-                                 break;
-                            case "PIPE_3":
-                                object = new Pipe(game, x, y, 3);
-                                break;
-                            case "PIPE_4":
-                                object = new Pipe(game, x, y, 4);
-                                break;
-                            case "LITTLE_GOOMBA":
-                                object = new LittleGoomba(game, x, y, Integer.parseInt(infos[2]));
-                                break;
-                            default:
-                                object = BackgroundFactory.create(game, x, y, s);
-                        }
+                        GameItem object = InTheWorldFactory.create(game, x, y, s);
 
                         if (object != null) {
                             listeDesObjets.add(object);

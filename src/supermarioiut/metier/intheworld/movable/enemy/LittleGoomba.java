@@ -1,4 +1,4 @@
-package supermarioiut.metier.movable.enemy;
+package supermarioiut.metier.intheworld.movable.enemy;
 
 import iut.Game;
 
@@ -26,8 +26,8 @@ public class LittleGoomba extends Enemy {
      * @param x   Coordonnée x ou pop notre personnage.
      * @param y   Coordonnée y ou pop notre personnage.
      */
-    public LittleGoomba(Game g, int x, int y, float wIW) {
-        super(g, "interactive\\animated\\mobile\\littleGoomba\\walk_1", x, y, wIW);
+    public LittleGoomba(Game g, int x, int y) {
+        super(g, "interactive\\animated\\mobile\\littleGoomba\\walk_1", x, y);
 
         skin = "walk_2";
         nbImg = 10;

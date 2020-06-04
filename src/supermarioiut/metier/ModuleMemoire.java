@@ -1,6 +1,6 @@
 package supermarioiut.metier;
 
-import supermarioiut.metier.movable.Player;
+import supermarioiut.metier.intheworld.movable.Player;
 
 public class ModuleMemoire {
     private static Player player;

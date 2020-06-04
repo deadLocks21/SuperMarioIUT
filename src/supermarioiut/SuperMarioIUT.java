@@ -2,9 +2,8 @@ package supermarioiut;
 
 import iut.Vector;
 import supermarioiut.metier.ModuleMemoire;
-import supermarioiut.metier.movable.Player;
+import supermarioiut.metier.intheworld.movable.Player;
 import supermarioiut.metier.World;
-import supermarioiut.metier.movable.enemy.LittleGoomba;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,17 +47,17 @@ public class SuperMarioIUT extends iut.Game {
 
     @Override
     protected void lost() {
-        JOptionPane.showMessageDialog(this, "Vous avez perdu");
+        JOptionPane.showMessageDialog(this, "Vous avez perdu !!");
     }
 
     @Override
     protected void win() {
-
+        JOptionPane.showMessageDialog(this, "Vous avez gagné !!");
     }
 
     @Override
     protected boolean isPlayerWin() {
-        return false;
+        return ModuleMemoire.getPlayer().getWin();
     }
 
     @Override

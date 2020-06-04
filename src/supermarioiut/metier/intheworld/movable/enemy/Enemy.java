@@ -1,11 +1,10 @@
-package supermarioiut.metier.movable.enemy;
+package supermarioiut.metier.intheworld.movable.enemy;
 
 import iut.Game;
 import iut.GameItem;
 import supermarioiut.metier.ModuleMemoire;
 import supermarioiut.metier.intheworld.ScrollWorld;
-import supermarioiut.metier.movable.Entity;
-import supermarioiut.metier.movable.Player;
+import supermarioiut.metier.intheworld.movable.Entity;
 
 /**
  * Classe abstraite qui représente un enemy.
@@ -23,6 +22,9 @@ public abstract class Enemy extends Entity {
      * Ancien progressPoint.
      */
     private float oldProgressPoint;
+    /**
+     * Permet de savoir à quelle valeur de progressPoint notre ennemie peut commencer à marcher.
+     */
     private float whenIWalk;
 
     /**
@@ -33,11 +35,11 @@ public abstract class Enemy extends Entity {
      * @param x   Coordonnée x ou pop notre personnage.
      * @param y   Coordonnée y ou pop notre personnage.
      */
-    public Enemy(Game g, String nom, int x, int y, float wIW) {
+    public Enemy(Game g, String nom, int x, int y) {
         super(g, nom, x*64, y*64);
 
         orientation = "LEFT";
-        whenIWalk = wIW * 64;
+        whenIWalk = (x - 21) * 64;
     }
 
 

@@ -1,4 +1,4 @@
-package supermarioiut.metier.movable;
+package supermarioiut.metier.intheworld.movable;
 
 import iut.BoxGameItem;
 import iut.Game;

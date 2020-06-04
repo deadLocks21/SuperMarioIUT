@@ -183,7 +183,19 @@ public class Player extends Entity implements KeyListener {
         if(jump || fall) {
             skin = "jump";
         } else {
-            skin = "static";
+            if(super.getVx() != 0)
+                switch (skin){
+                    case "walk_1":
+                        skin = "walk_2";
+                        break;
+                    case "walk_2":
+                        skin = "walk_3";
+                        break;
+                    default:
+                        skin = "walk_1";
+                }
+            else
+                skin = "static";
         }
 
         changeSprite("interactive\\animated\\controlable\\" + state + "\\" + skin);

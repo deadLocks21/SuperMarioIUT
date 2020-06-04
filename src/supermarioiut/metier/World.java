@@ -4,6 +4,7 @@ import iut.Game;
 import iut.GameItem;
 import supermarioiut.metier.intheworld.backgrounds.*;
 import supermarioiut.metier.intheworld.blocks.*;
+import supermarioiut.metier.movable.enemy.LittleGoomba;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -182,6 +183,9 @@ public class World {
                             case "PIPE_4":
                                 object = new Pipe(game, x, y, 4);
                                 break;
+                            case "LITTLE_GOOMBA":
+                                object = new LittleGoomba(game, x, y, Integer.parseInt(infos[2]));
+                                break;
                             default:
                                 object = BackgroundFactory.create(game, x, y, s);
                         }
@@ -189,24 +193,33 @@ public class World {
                         if (object != null) {
                             listeDesObjets.add(object);
 
-                            if(!object.getItemType().equals("BACKGROUND")) {
+                            if(!object.getItemType().equals("BACKGROUND") && !object.getItemType().equals("ENEMY")) {
                                 theoricWorld[y][x] = object.getItemType();
 
                                 if(object.getItemType().contains("PIPE")){
                                     theoricWorld[y][x] = object.getItemType();
+                                    theoricWorld[y][x+1] = object.getItemType();
 
-                                    if (object.getItemType().equals("PIPE_2"))
+                                    if (object.getItemType().equals("PIPE_2")) {
                                         theoricWorld[y + 1][x] = object.getItemType();
+                                        theoricWorld[y + 1][x+1] = object.getItemType();
+                                    }
+
 
                                     if (object.getItemType().equals("PIPE_3")) {
                                         theoricWorld[y + 1][x] = object.getItemType();
                                         theoricWorld[y + 2][x] = object.getItemType();
+                                        theoricWorld[y + 1][x+1] = object.getItemType();
+                                        theoricWorld[y + 2][x+1] = object.getItemType();
                                     }
 
                                     if (object.getItemType().equals("PIPE_4")) {
                                         theoricWorld[y + 1][x] = object.getItemType();
                                         theoricWorld[y + 2][x] = object.getItemType();
                                         theoricWorld[y + 3][x] = object.getItemType();
+                                        theoricWorld[y + 1][x+1] = object.getItemType();
+                                        theoricWorld[y + 2][x+1] = object.getItemType();
+                                        theoricWorld[y + 3][x+1] = object.getItemType();
                                     }
                                 }
                             }

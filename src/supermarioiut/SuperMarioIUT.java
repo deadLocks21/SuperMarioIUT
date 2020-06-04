@@ -1,13 +1,12 @@
 package supermarioiut;
 
 import iut.Vector;
-import supermarioiut.metier.Master;
-import supermarioiut.metier.Master2;
-import supermarioiut.metier.Player;
+import supermarioiut.metier.ModuleMemoire;
+import supermarioiut.metier.movable.Player;
 import supermarioiut.metier.World;
-import supermarioiut.metier.intheworld.blocks.Floor;
-import supermarioiut.metier.intheworld.blocks.SolidWall;
+import supermarioiut.metier.movable.enemy.LittleGoomba;
 
+import javax.swing.*;
 import java.awt.*;
 
 
@@ -27,26 +26,18 @@ public class SuperMarioIUT extends iut.Game {
     protected void createItems() {
         World myWorld = World.getInstance();
         myWorld.init(this, "1-1");
+        // myWorld.init(this, "box");
         System.out.println(myWorld);
 
         myWorld.display();
 
-        addItem(new Master2(this, "mario_1", 0, 0));
+//        addItem(new LittleGoomba(this, 21, 12, 21));
+//        addItem(new LittleGoomba(this, 42, 12, 41));
+//        addItem(new LittleGoomba(this, 52, 12, 51));
+//        addItem(new LittleGoomba(this, 54, 12, 53));
 
-
-//         addItem(new SolidWall(this, 0, 12*64));
-//         addItem(new Player(this,"mario_2", 0, 512));
-
-
-//        for(int y = 13; y <= 14; y ++)
-//            for(int x = 0; x <= 19; x++)
-//                addItem(new Floor(this, x, y));
-//
-//        for(int y = 0; y <= 20; y ++)
-//            for(int x = 0; x < 1; x++)
-//                addItem(new Floor(this, x, y));
-//
-//        addItem(new Master2(this, "interactive\\inert\\solidWall", 70, 0));
+        ModuleMemoire.setPlayer(new Player(this, "mario_1", 5, 9));
+        addItem(ModuleMemoire.getPlayer());
     }
 
     @Override
@@ -57,7 +48,7 @@ public class SuperMarioIUT extends iut.Game {
 
     @Override
     protected void lost() {
-
+        JOptionPane.showMessageDialog(this, "Vous avez perdu");
     }
 
     @Override
@@ -72,7 +63,7 @@ public class SuperMarioIUT extends iut.Game {
 
     @Override
     protected boolean isPlayerLost() {
-        return false;
+        return !ModuleMemoire.getPlayer().getIsAlive();
     }
 
     @Override

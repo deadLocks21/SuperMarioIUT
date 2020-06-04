@@ -1,61 +1,112 @@
-package supermarioiut.metier;
+package supermarioiut.metier.movable;
 
-import iut.BoxGameItem;
 import iut.Game;
 import iut.GameItem;
 import supermarioiut.metier.intheworld.ScrollWorld;
 
-import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 
-public class Master2 extends Entity implements KeyListener {
-    //**** Constante ****\\
-    private int MAX_HEIGHT_JUMP = 150;
+/**
+ * Permet d'afficher et de déplacer notre joueur.
+ */
+public class Player extends Entity implements KeyListener {
+    /**
+     * Hauteur maximale ou le joueur peut sauter en pixel.
+     */
+    int MAX_HEIGHT_JUMP = 150;
+    /**
+     * Incrémentation de la vitesse.
+     */
+    int I_SPEED = 1;
+    /**
+     * Valeur d'un pixel de bloc en pixel.
+     */
+    int PIXEL = 1;
 
-    //**** Variables ****\\
+    /**
+     * TRUE si la flèche LEFT est pressée.
+     */
     private boolean pressedLeft;
+    /**
+     * TRUE si la flèche TOP est pressée.
+     */
     private boolean pressedTop;
+    /**
+     * TRUE si la flèche RIGHT est pressée.
+     */
     private boolean pressedRight;
+    /**
+     * TRUE si la flèche BOTTOM est pressée.
+     */
     private boolean pressedBottom;
 
-    // Jump var
+    /**
+     * TRUE si le joueur est en phase de montée.
+     */
     private boolean jump;
+    /**
+     * TRUE si le joueur est en descente.
+     */
     private boolean fall;
+    /**
+     * TRUE si le joueur a le droit de sauter.
+     */
     private boolean rightToJump;
+    /**
+     * Hauteur de départ lors d'un saut du joueur.
+     */
     private int startHeightJump;
 
+    /**
+     * Skin qui change en fonction de si le joueur saute ou va à gauche ou à droite.
+     */
     private String skin;
+    /**
+     * Etait 1, 2 ou 3 de notre joueur.
+     */
     private String state;
 
 
-    //**** Constructeur ****\\
-    public Master2(Game g, String state, int x, int y) {
-        super(g, "interactive\\animated\\controlable\\" + state + "\\static", x, y);
+    /**
+     * Constructeur de la classe Player.
+     *
+     *
+     * @param g     Jeu dans auquel appartient notre joueur.
+     * @param state Etat de notre joueur ("mario_1" par exemple).
+     * @param x     Point x ou pop le joueur.
+     * @param y     Point y ou pop le joueur.
+     */
+    public Player(Game g, String state, int x, int y) {
+        super(g, "interactive\\animated\\controlable\\" + state + "\\static", x*64, y*64);
 
         skin = "static";
         this.state = state;
 
-        initPressed();
-        initJumpVar();
-    }
-
-    //**** Méthodes ****\\
-    private void initPressed(){
         pressedLeft = false;
         pressedTop = false;
         pressedRight = false;
         pressedBottom = false;
-    }
 
-    private void initJumpVar(){
         jump = false;
         fall = false;
         rightToJump = false;
         startHeightJump = 0;
     }
 
+
+    @Override
+    protected void refreshPosition(){
+        if(this.getRight() > this.getGame().getWidth()/2 && super.getVx() > 0){  // Fait avancer le monde.
+            ScrollWorld.moveTheWorld(super.getVx());
+            moveXY(0, super.getVy());
+        } else {
+            moveXY(super.getVx(), super.getVy());
+        }
+    }
+
+    @Override
     protected void speedGestion(){
         // LEFT
         if(getVx() < 0 && !pressedLeft)
@@ -81,8 +132,6 @@ public class Master2 extends Entity implements KeyListener {
         // TOP & BOTTOM
         int actualHeight = this.getTop();
 
-        // System.out.println("pressedTop " + pressedTop + "    rightToJump " + rightToJump + "    jump " + jump + "    Vy " + super.getVy());
-
         // Vérifie si le joueur veut et peut sauter
         if(pressedTop && rightToJump) {
             jump = true;
@@ -90,20 +139,15 @@ public class Master2 extends Entity implements KeyListener {
         }
 
         if (jump) {
-            System.out.println("Jump");
-
-            super.gravity = false;
+            setGravity(false);
             setVy(-10);
-            skin = "jump";
         }
 
         if (jump && (!pressedTop || startHeightJump - actualHeight >= MAX_HEIGHT_JUMP)){
-            System.out.println("Fall");
-
             jump = false;
             fall = true;
-            v0 = -10;
-            t = 0;
+            setV0(-10);
+            setT(0);
         }
 
         rightToJump = !pressedTop && blockBottom();
@@ -111,18 +155,22 @@ public class Master2 extends Entity implements KeyListener {
         if (fall && blockBottom()){
             jump = false;
             fall = false;
-            v0 = 0;
-            skin = "static";
+            setV0(0);
         }
     }
 
     @Override
     protected void skinGestion() {
+        if(jump || fall) {
+            skin = "jump";
+        } else {
+            skin = "static";
+        }
+
         changeSprite("interactive\\animated\\controlable\\" + state + "\\" + skin);
     }
 
 
-    //**** Override ****\\
     @Override
     public void collideEffect(GameItem gameItem) {
 
@@ -130,8 +178,9 @@ public class Master2 extends Entity implements KeyListener {
 
     @Override
     public String getItemType() {
-        return "MASTER_2";
+        return "PLAYER";
     }
+
 
     @Override
     public void keyTyped(KeyEvent e) {

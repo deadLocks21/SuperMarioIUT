@@ -14,6 +14,14 @@ public abstract class Block extends BoxGameItem {
      * Valeur de x initiale de notre objet.
      */
     private int basePoint;
+    /**
+     * Ordonée du bloc.
+     */
+    private int x;
+    /**
+     * Abscisse du bloc.
+     */
+    private int y;
 
 
     /**
@@ -28,6 +36,17 @@ public abstract class Block extends BoxGameItem {
         super(g, nom, x*64, y*64);
 
         basePoint = x*64;
+        this.x = x;
+        this.y = y;
+    }
+
+
+    public void die(){
+        World world = World.getInstance();
+
+        world.changeTile(x, y, null);
+
+        getGame().remove(this);
     }
 
 

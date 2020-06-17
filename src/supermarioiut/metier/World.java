@@ -118,6 +118,10 @@ public class World {
         }
     }
 
+    public void changeTile(int x, int y, String blockName){
+        theoricWorld[y][x] = blockName;
+    }
+
     /**
      * Permet de nettoyer l'affichage du jeu.
      */
@@ -243,7 +247,6 @@ public class World {
 
          for(int y = 0; y < h; y ++) {
              for (int x = 0; x < w; x++) {
-                 // Un SWITCH/CASE fait planter le jeu ...
                  try{
                      if ("FLOOR".equals(theoricWorld[y][x])) {
                          ret += "F";

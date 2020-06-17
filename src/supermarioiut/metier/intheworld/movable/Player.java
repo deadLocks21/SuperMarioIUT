@@ -3,6 +3,7 @@ package supermarioiut.metier.intheworld.movable;
 import iut.Game;
 import iut.GameItem;
 import supermarioiut.metier.intheworld.ScrollWorld;
+import supermarioiut.metier.intheworld.blocks.Block;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
@@ -162,11 +163,15 @@ public class Player extends Entity implements KeyListener {
             setVy(-10);
         }
 
-        if (jump && (!pressedTop || startHeightJump - actualHeight >= MAX_HEIGHT_JUMP)){
+        if (jump && (!pressedTop || startHeightJump - actualHeight >= MAX_HEIGHT_JUMP || super.blockTop() || super.collideTop())){
             jump = false;
             fall = true;
-            setV0(-10);
             setT(0);
+
+            if (super.blockTop() || super.collideTop())
+                setV0(0);
+            else
+                setV0(-10);
         }
 
         rightToJump = !pressedTop && blockBottom();
@@ -204,6 +209,11 @@ public class Player extends Entity implements KeyListener {
 
     @Override
     public void collideEffect(GameItem gameItem) {
+        if ((gameItem.getItemType().equals("WALL") || gameItem.getItemType().equals("LUCKY_BOX")) && blockTop()) {
+            Block block = (Block) gameItem;
+            block.die();
+        }
+
         if(gameItem.getItemType().equals("FLAG_BAR"))
             win = true;
     }

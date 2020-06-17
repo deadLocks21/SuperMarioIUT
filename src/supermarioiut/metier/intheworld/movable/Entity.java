@@ -289,7 +289,7 @@ public abstract class Entity extends BoxGameItem {
      *
      * @return TRUE si je suis dans un bloc.
      */
-    private boolean collideTop(){
+    protected boolean collideTop(){
         boolean res = false;
 
         try {
@@ -439,30 +439,39 @@ public abstract class Entity extends BoxGameItem {
             moveXY(0, ((cooBRy - 1) * 64) - (getPosition().getY() + getHeight()));
             Vy = 0;
             t = 0;
-        }
-
-        // LEFT
-        if(Vx < 0 && collideLeft()) {
-            moveXY((((cooTLx + 1) * 64) - getPosition().getX()) - ScrollWorld.getProgressPoint(), 0);
-            Vx = 0;
-        }
-
-        // RIGHT
-        if(Vx > 0 && collideRight()) {
-            moveXY((((cooBRx - 1) * 64) - (getPosition().getX() + getWidth())) - ScrollWorld.getProgressPoint(), 0);
-            Vx = 0;
+            whereIAm();
         }
 
         // TOP
         if(Vy < 0 && collideTop()) {
             moveXY(0, ((cooTLy + 1) * 64) - getPosition().getY());
             Vy = 0;
+            whereIAm();
+        }
+
+        // LEFT
+        if(Vx < 0 && collideLeft()) {
+            moveXY((((cooTLx + 1) * 64) - getPosition().getX()) - ScrollWorld.getProgressPoint(), 0);
+            if (!gravity)
+                Vx = 0;
+            whereIAm();
+        }
+
+        // RIGHT
+        if(Vx > 0 && collideRight()) {
+            moveXY((((cooBRx - 1) * 64) - (getPosition().getX() + getWidth())) - ScrollWorld.getProgressPoint(), 0);
+            if (!gravity)
+                Vx = 0;
+            whereIAm();
         }
     }
 
 
     @Override
     public void evolve(long l) {
+        World world = World.getInstance();
+        theoricWorld = world.getTheoricWorld();
+
         speedGestion();
         gravity();
         collide();
